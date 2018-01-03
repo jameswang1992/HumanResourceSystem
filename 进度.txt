@@ -1,0 +1,2 @@
+HumanResourceSystem Day1:
+理一下项目思路，写了5个实体类，2个接口，2个mapperxml，测了一个Dao

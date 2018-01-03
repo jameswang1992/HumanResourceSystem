@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.james.dao.UserDao">
+	<insert id="addUser" parameterType="User">
+		insert into
+			user(user_name,password,dept_id,position_id,entry_time,user_type)
+		values
+			(#{userName},#{password},#{uDepartment.deptId},#{uPosition.positionId},#{entryTime},#{userType})
+	</insert>
+	
+	
+	<select id="queryUserByUserId" parameterType="int" resultMap="UserResultMap">
+		select
+			*
+		from
+			user u,department d,position p
+		where
+			u.dept_id=d.dept_id
+		and
+			u.position_id=p.position_id
+		and
+			u.user_id=#{userId}
+	</select>
+	
+	
+	<select id="queryUserByUserName" parameterType="String" resultMap="UserResultMap">
+		select
+			*
+		from
+			user u
+		where
+			u.user_name=#{userName}
+	</select>
+	
+	
+	<select id="queryUserByUserNameAndPassword" resultMap="UserResultMap">
+		select
+			*
+		from
+			user u
+		where
+			u.user_name=#{userName}
+		and
+			u.password=#{password}
+	</select>
+	
+	
+	<select id="queryAllUsers" resultMap="UserResultMap">
+		select
+			*
+		from
+			user u,department d,position p
+		where
+			u.dept_id=d.dept_id
+		and
+			u.position_id=p.position_id
+	</select>
+	
+	<update id="updateUser" parameterType="User">
+		update
+			user
+		set
+			user_name=#{userName},
+			password=#{password},
+			dept_id=#{uDepartment.deptId},
+			position_id=#{uPosition.positionId},
+			entry_time=#{entryTime},
+			user_type=#{userType} 
+		where 
+			user_id=#{userId}
+	</update>
+	
+	
+	<resultMap type="User" id="UserResultMap">
+		<id property="userId" column="user_id"/>
+		<result property="userName" column="user_name"/>
+		<result property="password" column="password"/>
+		<result property="entryTime" column="entry_time"/>
+		<result property="userType" column="user_type"/>
+		<association property="uDepartment" javaType="Department">
+			<id property="deptId" column="dept_id"/>
+			<result property="deptName" column="dept_name"/>
+		</association>
+		<association property="uPosition" javaType="Position">
+			<id property="positionId" column="position_id"/>
+			<result property="positionName" column="position_name"/>
+		</association>
+	</resultMap>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

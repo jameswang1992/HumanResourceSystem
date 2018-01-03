@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.james.dao.DepartmentDao">
+	<insert id="addDepartment" parameterType="Department">
+		insert into
+			department(dept_name,dept_create_time)
+		values
+			(#{deptName},#{deptCreateTime})
+	</insert>
+	
+	<delete id="deleteDepartment" parameterType="int">
+		delete from
+			department
+		where 
+			dept_id=#{deptId}
+	</delete>
+	
+	<update id="updateDepartment" parameterType="Department">
+		update
+			department
+		set 
+			dept_name=#{deptName},
+			dept_create_time=#{deptCreateTime}
+		where 
+			dept_id=#{deptId}
+	</update>
+	
+	<select id="queryAllDepartments">
+		select
+			*
+		from
+			department
+	</select>
+	
+	<select id="queryDepartmentByDeptId" parameterType="int">
+		select
+			*
+		from
+			department
+		where
+			dept_id=#{deptId}
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
