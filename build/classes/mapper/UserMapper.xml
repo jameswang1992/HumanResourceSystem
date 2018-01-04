@@ -14,7 +14,7 @@
 		select
 			*
 		from
-			user u,department d,position p
+			user u,department d,positions p
 		where
 			u.dept_id=d.dept_id
 		and
@@ -50,7 +50,7 @@
 		select
 			*
 		from
-			user u,department d,position p
+			user u,department d,positions p
 		where
 			u.dept_id=d.dept_id
 		and

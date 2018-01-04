@@ -17,7 +17,8 @@
 				   exjob,
 				   expected_salary,
 				   dept_id,
-				   position_id)
+				   position_id,
+				   status)
 		values
 			(#{rUser.userId},
 			 #{realName},
@@ -30,10 +31,80 @@
 			 #{experience},
 			 #{hobby},
 			 #{exjob},
-			 #{expected_salary},
+			 #{expectedSalary},
 			 #{rDepartment.deptId},
-			 #{rPosition.positionId})
+			 #{rPosition.positionId},
+			 #{status})
 	</insert>
+	
+	<update id="updateResume" parameterType="Resume">
+		update
+			resume
+		set
+			user_id=#{rUser.userId},
+			real_name=#{realName},
+			age=#{age},
+			contact=#{contact},
+			gender=#{gender},
+			academic=#{academic},
+			email=#{email},
+			political=#{political},
+			experience=#{experience},
+			hobby=#{hobby},
+			exjob=#{exjob},
+			expected_salary=#{expectedSalary},
+			dept_id=#{rDepartment.deptId},
+			position_id=#{rPosition.positionId},
+			status=#{status}
+		where
+			resume_id=#{resumeId}
+	</update>
+	
+	<select id="queryResumeByUserId" parameterType="int" resultMap="ResumeResultMap">
+		select
+			*
+		from
+			resume r,user u,department d,positions p
+		where
+			r.user_id=#{userId}
+		and
+			r.dept_id=d.dept_id
+		and
+			r.position_id=p.position_id
+	</select>
+	
+	<resultMap type="Resume" id="ResumeResultMap">
+		<id property="resumeId" column="resume_id"/>
+		<result property="realName" column="real_name"/>
+		<result property="age" column="age"/>
+		<result property="contact" column="contact"/>
+		<result property="gender" column="gender"/>
+		<result property="academic" column="academic"/>
+		<result property="email" column="email"/>
+		<result property="political" column="political"/>
+		<result property="experience" column="experience"/>
+		<result property="hobby" column="hobby"/>
+		<result property="exjob" column="exjob"/>
+		<result property="expectedSalary" column="expected_salary"/>
+		<result property="status" column="status"/>
+		<association property="rUser" javaType="User">
+			<id property="userId" column="user_id"/>
+			<result property="userName" column="user_name"/>
+			<result property="password" column="password"/>
+			<result property="entryTime" column="entry_time"/>
+			<result property="userType" column="user_type"/>
+		</association>
+		<association property="rDepartment" javaType="Department">
+			<id property="deptId" column="dept_id"/>
+			<result property="deptName" column="dept_name"/>
+			<result property="deptCreateTime" column="dept_create_time"/>
+		</association>
+		<association property="rPosition" javaType="Position">
+			<id property="positionId" column="position_id"/>
+			<result property="positionName" column="position_name"/>
+			<result property="positCreateTime" column="posit_create_time"/>
+		</association>
+	</resultMap>
 </mapper>
 
 

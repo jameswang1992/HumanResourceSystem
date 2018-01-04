@@ -2,3 +2,7 @@ HumanResourceSystem Day1:
 理一下项目思路，写了5个实体类，2个接口，2个mapperxml，测了一个Dao
 HumanResourceSystem Day1-night:
 多写了两个接口，两个mapper，测了两个
+
+HumanResourceSystem Day2:
+写了1实体类，2个接口，2个mapper，测了3个Dao
+总体就是写完6个实体类都测完了

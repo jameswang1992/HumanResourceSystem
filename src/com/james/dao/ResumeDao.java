@@ -8,6 +8,11 @@ public interface ResumeDao {
 	
 	int updateResume(Resume resume);
 	
+	/**
+	 * 根据用户ID查找所对应的简历
+	 * @param userId
+	 * @return
+	 */
 	Resume queryResumeByUserId(Integer userId);
 	
 	

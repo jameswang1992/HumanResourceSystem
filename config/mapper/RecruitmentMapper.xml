@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.james.dao.RecruitmentDao">
+	<insert id="addRecruitment" parameterType="Recruitment">
+		insert into
+			recruitments(dept_id,position_id,requirement,treatment,expired)
+		values
+			(#{rDepartment.deptId},#{rPosition.positionId},#{requirement},#{treatment},#{expired})
+	</insert>
+	
+	<update id="updateRecruitment" parameterType="Recruitment">
+		update
+			recruitments
+		set
+			dept_id=#{rDepartment.deptId},
+			position_id=#{rPosition.positionId},
+			requirement=#{requirement},
+			treatment=#{treatment},
+			expired=#{expired}
+		where
+			recruit_id=#{recruitId}
+	</update>
+	
+	<select id="queryRecmtByRecmtId" parameterType="int" resultMap="RecmtResultMap">
+		select
+			*
+		from
+			recruitments r,department d,positions p
+		where
+			r.dept_id=d.dept_id
+		and
+			r.position_id=p.position_id
+		and
+			recruit_id=#{recruitId}
+	</select>
+	
+	<select id="queryAllRecmts" resultMap="RecmtResultMap">
+		select
+			*
+		from
+			recruitments r,department d,positions p
+		where
+			r.dept_id=d.dept_id
+		and
+			r.position_id=p.position_id
+		and
+			r.expired=0
+	</select>
+	
+	<resultMap type="Recruitment" id="RecmtResultMap">
+		<id property="recruitId" column="recruit_id"/>
+		<result property="requirement" column="requirement"/>
+		<result property="treatment" column="treatment"/>
+		<result property="expired" column="expired"/>
+		<association property="rDepartment" javaType="Department">
+			<id property="deptId" column="dept_id"/>
+			<result property="deptName" column="dept_name"/>
+			<result property="deptCreateTime" column="dept_create_time"/>
+		</association>
+		<association property="rPosition" javaType="Position">
+			<id property="positionId" column="position_id"/>
+			<result property="positionName" column="position_name"/>
+			<result property="positionCreateTime" column="position_create_time"/>
+		</association>
+	</resultMap>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

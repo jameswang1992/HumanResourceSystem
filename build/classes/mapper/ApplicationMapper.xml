@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.james.dao.ApplicationDao">
+	<insert id="addApplication" parameterType="Application">
+		insert into
+			applications(user_id,recruit_id,app_create_time)
+		values
+			(#{aUser.userId},#{aRecmt.recruitId},#{appCreateTime})
+	</insert>
+	
+	<delete id="deleteApplication" parameterType="int">
+		delete from
+			applications
+		where
+			app_id=#{appId}
+	</delete>
+	
+	<select id="queryAllApplications" resultMap="AppResultMap">
+		select
+			*
+		from
+			applications a,user u,recruitments r,department d,positions p
+		where
+			a.user_id=u.user_id
+		and
+			a.recruit_id=r.recruit_id
+		and
+			r.dept_id=d.dept_id
+		and
+			r.position_id=p.position_id
+	</select>
+	
+	<resultMap type="Application" id="AppResultMap">
+		<id property="appId" column="app_id"/>
+		<result property="appCreateTime" column="app_create_time"/>
+		<association property="aUser" javaType="User">
+			<id property="userId" column="user_id"/>
+			<result property="userName" column="user_name"/>
+			<result property="password" column="password"/>
+			<result property="entryTime" column="entry_time"/>
+			<result property="userType" column="user_type"/>	
+		</association>
+		<association property="aRecmt" javaType="Recruitment">
+			<id property="recruitId" column="recruit_id"/>
+			<result property="requirement" column="requirement"/>
+			<result property="treatment" column="treatment"/>
+			<result property="expired" column="expired"/>
+			<association property="rDepartment" javaType="Department">
+				<id property="deptId" column="dept_id"/>
+				<result property="deptName" column="dept_name"/>
+				<result property="deptCreateTime" column="dept_create_time"/>
+			</association>
+			<association property="rPosition" javaType="Position">
+				<id property="positionId" column="position_id"/>
+				<result property="positionName" column="position_name"/>
+				<result property="positionCreateTime" column="position_create_time"/>
+			</association>
+		</association>
+	</resultMap>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

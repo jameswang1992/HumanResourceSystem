@@ -56,7 +56,7 @@ public class Position {
 
 	@Override
 	public String toString() {
-		return "Position [positionId=" + positionId + ", positionName=" + positionName + ", pDepartment=" + pDepartment.getDeptName()
+		return "Position [positionId=" + positionId + ", positionName=" + positionName + ", pDepartment=" + pDepartment
 				+ ", positCreateTime=" + positCreateTime + "]";
 	}
 

@@ -1,5 +1,11 @@
 package com.james.entity;
 
+/**
+ * 简历类
+ * 
+ * @author jameswang
+ *
+ */
 public class Resume {
 	private Integer resumeId;// 简历ID
 	private User rUser;
@@ -16,6 +22,7 @@ public class Resume {
 	private String expectedSalary;// 期望工资
 	private Department rDepartment;// 应聘部门
 	private Position rPosition;// 应聘职位
+	private String status;// 未查看，已查看
 
 	public Resume() {
 		super();
@@ -24,7 +31,7 @@ public class Resume {
 
 	public Resume(Integer resumeId, User rUser, String realName, int age, long contact, String gender, String academic,
 			String email, String political, int experience, String hobby, String exjob, String expectedSalary,
-			Department rDepartment, Position rPosition) {
+			Department rDepartment, Position rPosition, String status) {
 		super();
 		this.resumeId = resumeId;
 		this.rUser = rUser;
@@ -41,6 +48,7 @@ public class Resume {
 		this.expectedSalary = expectedSalary;
 		this.rDepartment = rDepartment;
 		this.rPosition = rPosition;
+		this.status = status;
 	}
 
 	public Integer getResumeId() {
@@ -163,13 +171,21 @@ public class Resume {
 		this.rPosition = rPosition;
 	}
 
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 	@Override
 	public String toString() {
 		return "Resume [resumeId=" + resumeId + ", rUser=" + rUser + ", realName=" + realName + ", age=" + age
 				+ ", contact=" + contact + ", gender=" + gender + ", academic=" + academic + ", email=" + email
 				+ ", political=" + political + ", experience=" + experience + ", hobby=" + hobby + ", exjob=" + exjob
 				+ ", expectedSalary=" + expectedSalary + ", rDepartment=" + rDepartment + ", rPosition=" + rPosition
-				+ "]";
+				+ ", status=" + status + "]";
 	}
 
 }
