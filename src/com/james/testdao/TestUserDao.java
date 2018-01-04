@@ -32,7 +32,7 @@ public class TestUserDao {
 	@Test
 	public void testAddUser() {
 		Department dept = new Department(1, "人事部",new Date());
-		Position position = new Position(1, "主管", dept);
+		Position position = new Position(1, "主管", dept,new Date());
 		User user = new User(0, "111", "111", dept, position, new Date(), 0);
 		int res = userDao.addUser(user);
 		System.out.println(res);
@@ -65,7 +65,7 @@ public class TestUserDao {
 	@Test
 	public void testUpdateUser() {
 		Department dept = new Department(1, "人事部",new Date());
-		Position position = new Position(1, "主管", dept);
+		Position position = new Position(1, "主管", dept,new Date());
 		User user = new User(4, "222", "222", dept, position, new Date(), 1);
 		int res = userDao.updateUser(user);
 		System.out.println(res);

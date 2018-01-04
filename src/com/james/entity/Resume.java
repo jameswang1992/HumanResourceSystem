@@ -2,7 +2,7 @@ package com.james.entity;
 
 public class Resume {
 	private Integer resumeId;// 简历ID
-	private User user;
+	private User rUser;
 	private String realName;// 真实姓名
 	private int age;
 	private long contact;// 联系方式
@@ -22,12 +22,12 @@ public class Resume {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Resume(Integer resumeId, User user, String realName, int age, long contact, String gender, String academic,
+	public Resume(Integer resumeId, User rUser, String realName, int age, long contact, String gender, String academic,
 			String email, String political, int experience, String hobby, String exjob, String expectedSalary,
 			Department rDepartment, Position rPosition) {
 		super();
 		this.resumeId = resumeId;
-		this.user = user;
+		this.rUser = rUser;
 		this.realName = realName;
 		this.age = age;
 		this.contact = contact;
@@ -51,12 +51,12 @@ public class Resume {
 		this.resumeId = resumeId;
 	}
 
-	public User getUser() {
-		return user;
+	public User getrUser() {
+		return rUser;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setrUser(User rUser) {
+		this.rUser = rUser;
 	}
 
 	public String getRealName() {
@@ -165,10 +165,10 @@ public class Resume {
 
 	@Override
 	public String toString() {
-		return "Resume [resumeId=" + resumeId + ", user=" + user.getUserName() + ", realName=" + realName + ", age=" + age
+		return "Resume [resumeId=" + resumeId + ", rUser=" + rUser + ", realName=" + realName + ", age=" + age
 				+ ", contact=" + contact + ", gender=" + gender + ", academic=" + academic + ", email=" + email
 				+ ", political=" + political + ", experience=" + experience + ", hobby=" + hobby + ", exjob=" + exjob
-				+ ", expectedSalary=" + expectedSalary + ", rDepartment=" + rDepartment.getDeptName() + ", rPosition=" + rPosition.getPositionName()
+				+ ", expectedSalary=" + expectedSalary + ", rDepartment=" + rDepartment + ", rPosition=" + rPosition
 				+ "]";
 	}
 

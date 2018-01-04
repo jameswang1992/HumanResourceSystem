@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.james.dao.PositionDao">
+	<insert id="addPosition" parameterType="Position">
+		insert into
+			positions(position_name,dept_id,posit_create_time)
+		values
+			(#{positionName},#{pDepartment.deptId},#{positCreateTime})
+	</insert>
+	
+	<delete id="deletePosition" parameterType="int">
+		delete from
+			positions
+		where
+			position_id=#{positionId}
+	</delete>
+	
+	<select id="queryPositionByPositionId" parameterType="int" resultMap="PositionResultMap">
+		select
+			*
+		from
+			positions p,department d
+		where
+			p.position_id=#{positionId}
+		and
+			p.dept_id=d.dept_id
+	</select>
+	
+	<select id="queryPositionsByDeptId" resultMap="PositionResultMap">
+		select
+			*
+		from
+			positions p,department d
+		where
+			p.dept_id=#{deptId}
+		
+	</select>
+	
+	<resultMap type="Position" id="PositionResultMap">
+		<id property="positionId" column="position_id"/>
+		<result property="positionName" column="position_name"/>
+		<result property="positCreateTime" column="posit_create_time"/>
+		<association property="pDepartment" javaType="Department">
+			<id property="deptId" column="dept_id"/>
+			<result property="deptName" column="dept_name"/>
+			<result property="deptCreateTime" column="dept_create_time"/>
+		</association>
+	</resultMap>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

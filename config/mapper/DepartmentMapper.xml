@@ -26,14 +26,14 @@
 			dept_id=#{deptId}
 	</update>
 	
-	<select id="queryAllDepartments">
+	<select id="queryAllDepartments" resultMap="DeptResultMap">
 		select
 			*
 		from
 			department
 	</select>
 	
-	<select id="queryDepartmentByDeptId" parameterType="int">
+	<select id="queryDepartmentByDeptId" parameterType="int" resultMap="DeptResultMap">
 		select
 			*
 		from
@@ -41,6 +41,12 @@
 		where
 			dept_id=#{deptId}
 	</select>
+	
+	<resultMap type="Department" id="DeptResultMap">
+		<id property="deptId" column="dept_id"/>
+		<result property="deptName" column="dept_name"/>
+		<result property="deptCreateTime" column="dept_create_time"/>
+	</resultMap>
 </mapper>
 
 

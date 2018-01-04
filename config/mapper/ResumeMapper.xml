@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.james.dao.ResumeDao">
+	<insert id="addResume" parameterType="Resume">
+		insert into
+			Resume(user_id,
+				   real_name,
+				   age,
+				   contact,
+				   gender,
+				   academic,
+				   email,
+				   political,
+				   experience,
+				   hobby,
+				   exjob,
+				   expected_salary,
+				   dept_id,
+				   position_id)
+		values
+			(#{rUser.userId},
+			 #{realName},
+			 #{age},
+			 #{contact},
+			 #{gender},
+			 #{academic},
+			 #{email},
+			 #{political},
+			 #{experience},
+			 #{hobby},
+			 #{exjob},
+			 #{expected_salary},
+			 #{rDepartment.deptId},
+			 #{rPosition.positionId})
+	</insert>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
