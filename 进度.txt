@@ -6,3 +6,5 @@ HumanResourceSystem Day1-night:
 HumanResourceSystem Day2:
 写了1实体类，2个接口，2个mapper，测了3个Dao
 总体就是写完6个实体类都测完了
+HumanResourceSystem Day2-night:
+总体写完7个实体类，都测完，外加三个基本完成的页面，准备完善游客注册登录

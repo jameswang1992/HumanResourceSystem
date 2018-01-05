@@ -42,7 +42,7 @@
 	})
 </script>
 </head>
-<body background="${pageContext.request.contextPath}/pictures/register.jpg">
+<body background="${pageContext.request.contextPath}/pictures/bg.jpg">
 	<div id="main">
 		<h1 style="color: blue">欢迎注册</h1><br/>
 		<form action="#" method="post">

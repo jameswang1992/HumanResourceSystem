@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.james.dao.InterviewDao">
+	<insert id="addInterview" parameterType="Interview">
+		insert into
+			interviews(inter_time,inter_address,app_id,is_hire)
+		values
+			(#{interTime},#{interAddress},#{iApp.appId},#{isHire})
+	</insert>
+	
+	<delete id="deleteInterview" parameterType="int">
+		delete from
+			interviews
+		where 
+			interview_id=#{interviewId}
+	</delete>
+	
+	<select id="queryInterviewByUserId" parameterType="int" resultMap="InterviewResultMap">
+		select
+			*
+		from
+			interviews i,applications a,user u,department d,positions p
+		where
+			i.app_id=a.app_id
+		and 
+			u.dept_id=d.dept_id
+		and
+			u.position_id=p.position_id
+		and
+			a.user_id=#{userId}
+	</select>
+	
+	<resultMap type="Interview" id="InterviewResultMap">
+		<id property="interviewId" column="interview_id"/>
+		<result property="interTime" column="inter_time"/>
+		<result property="interAddress" column="inter_address"/>
+		<result property="isHire" column="is_hire"/>
+		<association property="iApp" javaType="Application">
+			<id property="appId" column="app_id"/>
+			<result property="appCreateTime" column="app_create_time"/>
+			<association property="aUser" javaType="User">
+				<id property="userId" column="user_id"/>
+				<result property="userName" column="user_name"/>
+				<result property="password" column="password"/>
+				<result property="entryTime" column="entry_time"/>
+				<result property="userType" column="user_type"/>	
+				<association property="uDepartment" javaType="Department">
+					<id property="deptId" column="dept_id"/>
+					<result property="deptName" column="dept_name"/>
+					<result property="deptCreateTime" column="dept_create_time"/>
+				</association>
+				<association property="uPosition" javaType="Position">
+					<id property="positionId" column="position_id"/>
+					<result property="positionName" column="position_name"/>
+					<result property="positCreateTime" column="posit_create_time"/>
+				</association>
+			</association>
+		</association>
+	</resultMap>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

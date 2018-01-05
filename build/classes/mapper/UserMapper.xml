@@ -81,10 +81,12 @@
 		<association property="uDepartment" javaType="Department">
 			<id property="deptId" column="dept_id"/>
 			<result property="deptName" column="dept_name"/>
+			<result property="deptCreateTime" column="dept_create_time"/>
 		</association>
 		<association property="uPosition" javaType="Position">
 			<id property="positionId" column="position_id"/>
 			<result property="positionName" column="position_name"/>
+			<result property="positCreateTime" column="posit_create_time"/>
 		</association>
 	</resultMap>
 </mapper>

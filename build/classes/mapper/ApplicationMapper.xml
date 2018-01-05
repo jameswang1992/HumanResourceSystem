@@ -31,6 +31,23 @@
 			r.position_id=p.position_id
 	</select>
 	
+	<select id="queryApplicationByUserId" parameterType="int" resultMap="AppResultMap">
+		select
+			*
+		from
+			applications a,user u,recruitments r,department d,positions p
+		where
+			a.user_id=u.user_id
+		and
+			a.recruit_id=r.recruit_id
+		and
+			r.dept_id=d.dept_id
+		and
+			r.position_id=p.position_id
+		and
+			a.user_id=#{userId}
+	</select>
+	
 	<resultMap type="Application" id="AppResultMap">
 		<id property="appId" column="app_id"/>
 		<result property="appCreateTime" column="app_create_time"/>
