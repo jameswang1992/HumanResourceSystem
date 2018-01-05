@@ -4,53 +4,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf8">
-<title>Insert title here</title>
-<style type="text/css">
-	#large{
-		float:left;
-		width:100%; 
-	}
-	
-	#left{
-		float:left;
-		border:1px solid;
-		height:450px;
-		width:20%; 
-	}
-	
-	
-	
-	#right{
-		float:right;
-		border:1px solid;  
-		width:70%;
-		height:450px;
-	}
-	
-	body{
-		background-repeat:no-repeat;
-		background-position:center;
-		background-attachment:fixed;
-		background-size:cover;
-	}
-	
-	li{
-		list-style-type:none;
-	}
-	
-	a{
-		color:brown;
-		text-decoration:none;
-	}
-	
-	span{
-		font-size:30px;
-	}
-
-</style>
+<title>修改密码</title>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/tourist.css">
 </head>
 <body background="${pageContext.request.contextPath}/pictures/bg.jpg">
-
 	<div id="large">			
 		
 		<h1 align="center">欢迎来到欢满堂招聘会</h1>							
@@ -58,7 +15,7 @@
 		<div id="left">
 			<ul type="square">
 				<li><a href=""><span>反馈</span></a></li><br/>
-				<li><a href=""><span>查看简历</span></a></li><br/>
+				<li><a href="${pageContext.request.contextPath}/user/readResume"><span>查看简历</span></a></li><br/>
 				<li><a href="${pageContext.request.contextPath}/modifyPW.jsp"><span>修改密码</span></a></li><br/>
 				<li><a href=""><span>公司人事</span></a></li><br/>
 				<li><a href=""><span>退出</span></a></li><br/>
@@ -67,9 +24,11 @@
 		
 		
 		<div id="right">
-				
+			<form action="#" method="post">
+				修改密码:<input type="text"><br/>
+					<input type="submit" value="确定">
+			</form>
 		</div>					
 	</div>
-	
 </body>
 </html>
