@@ -32,4 +32,10 @@ public class UserServiceImple implements UserService {
 		return user;
 	}
 
+
+
+	public int modifyUser(User user) {
+		return userDao.updateUser(user);
+	}
+
 }

@@ -19,4 +19,8 @@ public class PositionServiceImple implements PositionService {
 		return posDao.queryPositionsByDeptId(deptId);
 	}
 
+	public Position queryPositionByPositionId(Integer positionId) {
+		return posDao.queryPositionByPositionId(positionId);
+	}
+
 }

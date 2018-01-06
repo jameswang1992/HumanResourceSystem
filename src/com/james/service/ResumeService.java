@@ -8,5 +8,5 @@ public interface ResumeService {
 	
 	int modifyResume(Resume resume);
 	
-	
+	Resume queryResumeByUserId(Integer userId);
 }

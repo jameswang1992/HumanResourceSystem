@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf8">
 <title>游客页面</title>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/tourist.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/index.css">
 </head>
 <body background="${pageContext.request.contextPath}/pictures/bg.jpg">
 
@@ -17,8 +17,8 @@
 			<ul type="square">
 				<li><a href=""><span>反馈</span></a></li><br/>
 				<li><a href="${pageContext.request.contextPath}/user/readResume"><span>查看简历</span></a></li><br/>
-				<li><a href="${pageContext.request.contextPath}/user/modifyPW"><span>修改密码</span></a></li><br/>
-				<li><a href=""><span>公司人事</span></a></li><br/>
+				<li><a href="${pageContext.request.contextPath}/user/modify"><span>修改密码</span></a></li><br/>
+				<li><a href="${pageContext.request.contextPath}/job/recruitInfo"><span>招聘信息</span></a></li><br/>
 				<li><a href=""><span>退出</span></a></li><br/>
 			</ul>		
 		</div>	

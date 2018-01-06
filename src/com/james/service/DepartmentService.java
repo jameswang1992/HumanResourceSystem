@@ -7,5 +7,6 @@ import com.james.entity.Department;
 public interface DepartmentService {
 	
 	List<Department> queryAllDepts();
-		
+	
+	Department queryDeptByDeptId(Integer deptId);
 }

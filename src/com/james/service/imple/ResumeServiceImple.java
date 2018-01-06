@@ -1,20 +1,31 @@
 package com.james.service.imple;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.james.dao.ResumeDao;
 import com.james.entity.Resume;
 import com.james.service.ResumeService;
 
+@Service("resumeService")
 public class ResumeServiceImple implements ResumeService {
+	
+	@Autowired
+	private ResumeDao resumeDao;
+	
 
-	@Override
 	public int insertResume(Resume resume) {
-		// TODO Auto-generated method stub
-		return 0;
+		return resumeDao.addResume(resume);
 	}
 
-	@Override
+	
 	public int modifyResume(Resume resume) {
-		// TODO Auto-generated method stub
-		return 0;
+		return resumeDao.updateResume(resume);
+	}
+
+
+	public Resume queryResumeByUserId(Integer userId) {
+		return resumeDao.queryResumeByUserId(userId);
 	}
 
 }

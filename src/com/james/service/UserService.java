@@ -9,4 +9,6 @@ public interface UserService {
 	User login(String userName,String password);
 	
 	User queryUserByUserName(String userName);
+	
+	int modifyUser(User user);
 }

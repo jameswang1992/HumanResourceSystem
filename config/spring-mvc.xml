@@ -16,7 +16,7 @@
 		<property name="suffix" value=".jsp"></property>
 	</bean>
 	
-	
+	<mvc:annotation-driven/>
 
 
 </beans>

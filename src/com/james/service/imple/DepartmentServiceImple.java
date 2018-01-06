@@ -19,4 +19,9 @@ public class DepartmentServiceImple implements DepartmentService {
 		return deptDao.queryAllDepartments();
 	}
 
+
+	public Department queryDeptByDeptId(Integer deptId) {
+		return deptDao.queryDepartmentByDeptId(deptId);
+	}
+
 }
