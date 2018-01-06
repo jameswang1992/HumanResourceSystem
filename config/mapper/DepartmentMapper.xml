@@ -42,6 +42,15 @@
 			dept_id=#{deptId}
 	</select>
 	
+	<select id="queryDepartmentByDeptName" parameterType="String" resultMap="DeptResultMap">
+		select
+			*
+		from
+			department
+		where
+			dept_name=#{deptName}
+	</select>
+	
 	<resultMap type="Department" id="DeptResultMap">
 		<id property="deptId" column="dept_id"/>
 		<result property="deptName" column="dept_name"/>

@@ -1,0 +1,125 @@
+<%@ page language="java" contentType="text/html; charset=utf8"
+    pageEncoding="utf8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf8">
+<title>部门职位添加</title>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/index.css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.7.2.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("button[name='deptId']").click(function(){
+			var deptId = $(this).val();
+			$.ajax({
+				url:"${pageContext.request.contextPath}/user/queryPositionsByDeptId",
+				type:"post",
+				dataType:"json",
+				data:{deptId:deptId},
+				success:function(data){
+					$("#position").empty();
+					$.each(data,function(index,item){
+						$("#position").append("<span value="+item.positionId+">"+item.positionName+"</span><br/>");
+					})
+					$("#position").append("<button id='btn' name="+deptId+">添加职位</button>").find('#btn').click(function(){
+						var positionName = prompt("请输入您要添加的职位名称：");
+						if(positionName == "" || positionName == null){
+							alert("职位不能为空");
+							return;
+						}
+						var deptId = $(this).attr("name");
+						$.ajax({
+							url:"${pageContext.request.contextPath}/job/insertPosition",
+							type:"post",
+							dataType:"text",
+							data:{positionName:positionName,deptId:deptId},
+							success:function(data){
+								if(data == 1){
+									alert("该部门已有该职位，添加失败");
+								}else if(data == 0){
+									alert("添加职位成功");
+								}
+								window.location.reload();
+							},
+							error:function(x,msg,obj){
+								alert(msg);
+							}
+						})
+						return false;
+					});
+				},
+				error:function(x,msg,obj){
+					alert(msg);
+				}
+			})
+			return false;
+			
+		})
+		
+		$("a[name='dept']").click(function(){
+			var deptName = prompt("请输入您要添加的部门名称：");
+			if(deptName == "" || deptName == null){
+				alert("部门名称不能为空");
+				return;
+			}
+			$.ajax({
+				url:"${pageContext.request.contextPath}/job/insertDept",
+				type:"post",
+				dataType:"text",
+				data:{deptName:deptName},
+				success:function(data){
+					if(data == 1){
+						alert("部门添加成功");
+					}else{
+						alert("部门已存在，不能添加");
+					}
+					window.location.reload();
+				},
+				error:function(x,msg,obj){
+					alert(msg);
+				}
+			})
+			return false;
+		})
+		
+	})
+	
+	
+</script>
+</head>
+<body background="${pageContext.request.contextPath}/pictures/bg.jpg">
+	<div id="large">			
+		
+		<h1 align="center">欢迎管理员${sessionScope.user.userName}来到本公司</h1>							
+		
+		<div id="left">
+			<ul type="square">
+				<li><a href=""><span>应聘管理</span></a></li><br/>
+				<li><a href="${pageContext.request.contextPath}/job/recruit"><span>招聘管理</span></a></li><br/>
+				<li><a href="${pageContext.request.contextPath}/job/deptPosit"><span>部门职位</span></a></li><br/>
+				<li><a href="${pageContext.request.contextPath}"><span>培训管理</span></a></li><br/>
+				<li><a href=""><span>员工管理</span></a></li><br/>
+				<li><a href=""><span>奖惩管理</span></a></li><br/>
+				<li><a href=""><span>薪资管理</span></a></li><br/>
+				<li><a href=""><span>工资异议</span></a></li><br/>
+				<li><a href=""><span>退出</span></a></li><br/>
+			</ul>		
+		</div>	
+		
+		
+		<div id="right">
+			<div id="dept">
+				<c:forEach items="${requestScope.depts}" var="dept">
+					<button name="deptId" value="${dept.deptId}">${dept.deptName}</button>				
+				</c:forEach>
+				<a href="#" name="dept">添加部门</a>
+			</div>
+			<div id="position">
+				
+			</div>
+			
+		</div>					
+	</div>
+</body>
+</html>

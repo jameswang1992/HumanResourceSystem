@@ -49,6 +49,11 @@ public class UserController {
 	public String login(String userName,String password,HttpSession session) {
 		User user = userService.login(userName, password);
 		session.setAttribute("user", user);
+		if(user.getUserType() == 1) {
+			return "user/tourist";
+		}else if(user.getUserType() == 0){
+			return "manager/admin";
+		}
 		return "user/tourist";
 	}
 	

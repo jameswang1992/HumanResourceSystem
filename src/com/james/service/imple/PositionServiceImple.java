@@ -23,4 +23,8 @@ public class PositionServiceImple implements PositionService {
 		return posDao.queryPositionByPositionId(positionId);
 	}
 
+	public int insertPosition(Position position) {
+		return posDao.addPosition(position);
+	}
+
 }

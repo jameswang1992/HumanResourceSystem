@@ -8,5 +8,7 @@ public interface RecruitmentService {
 	
 	List<Recruitment> queryAllRecmts();
 	
+	int insertRecmt(Recruitment recmt);
 	
+	Recruitment queryRecmtByRecmtId(Integer recruitId);
 }

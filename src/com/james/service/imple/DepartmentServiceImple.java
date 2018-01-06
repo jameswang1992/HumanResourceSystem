@@ -24,4 +24,15 @@ public class DepartmentServiceImple implements DepartmentService {
 		return deptDao.queryDepartmentByDeptId(deptId);
 	}
 
+
+
+	public int insertDept(Department dept) {
+		return deptDao.addDepartment(dept);
+	}
+
+
+	public Department queryDeptByDeptName(String deptName) {
+		return deptDao.queryDepartmentByDeptName(deptName);
+	}
+
 }

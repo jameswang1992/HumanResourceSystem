@@ -12,6 +12,33 @@
 		border-bottom:1px solid; 
 	}
 </style>
+
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.7.2.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("a[name='sendRecmt']").click(function(){
+			if(confirm("确定要投递这个招聘岗位吗?")){
+				var recruitId = $(this).val();
+				$.ajax({
+					url:"${pageContext.request.contextPath}/job/insertApp",
+					type:"post",
+					dataType:"text",
+					data:{recruitId:recruitId},
+					success:function(data){
+						
+					},
+					error:function(x,msg,obj){
+						alert(msg);
+					}
+				})
+			}
+			
+		})
+			
+	})
+	
+
+</script>
 </head>
 <body background="${pageContext.request.contextPath}/pictures/bg.jpg">
 	<div id="large">			
@@ -37,7 +64,7 @@
 					<p>任职职位：${recmt.rPosition.positionName}</p>
 					<p>任职要求：${recmt.requirement}</p>
 					<p>薪资待遇：${recmt.treatment}</p>
-					<p><a href="#">投递简历</a></p>
+					<p><a href="#" name="sendRecmt" value="${recmt.recruitId}">投递简历</a></p>
 				</div>
 			</c:forEach>
 		</div>					

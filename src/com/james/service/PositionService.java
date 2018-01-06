@@ -9,4 +9,6 @@ public interface PositionService {
 	List<Position> queryPositionsByDeptId(Integer deptId);
 	
 	Position queryPositionByPositionId(Integer positionId);
+	
+	int insertPosition(Position position);
 }

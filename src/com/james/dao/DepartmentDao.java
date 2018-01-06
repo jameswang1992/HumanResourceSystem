@@ -16,5 +16,6 @@ public interface DepartmentDao {
 	
 	Department queryDepartmentByDeptId(Integer deptId);
 	
+	Department queryDepartmentByDeptName(String deptName);
 	
 }

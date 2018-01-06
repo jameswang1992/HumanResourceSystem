@@ -19,4 +19,14 @@ public class RecruitmentServiceImple implements RecruitmentService {
 		return recmtDao.queryAllRecmts();
 	}
 
+
+	public int insertRecmt(Recruitment recmt) {
+		return recmtDao.addRecruitment(recmt);
+	}
+
+
+	public Recruitment queryRecmtByRecmtId(Integer recruitId) {
+		return recmtDao.queryRecmtByRecmtId(recruitId);
+	}
+
 }
