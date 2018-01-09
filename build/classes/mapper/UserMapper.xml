@@ -4,7 +4,7 @@
 <mapper namespace="com.james.dao.UserDao">
 	<insert id="addUser" parameterType="User">
 		insert into
-			user(user_name,password,dept_id,position_id,entry_time,user_type)
+			users(user_name,password,dept_id,position_id,entry_time,user_type)
 		values
 			(#{userName},#{password},#{uDepartment.deptId},#{uPosition.positionId},#{entryTime},#{userType})
 	</insert>
@@ -14,7 +14,7 @@
 		select
 			*
 		from
-			user u,department d,positions p
+			users u,department d,positions p
 		where
 			u.dept_id=d.dept_id
 		and
@@ -28,7 +28,7 @@
 		select
 			*
 		from
-			user u
+			users u
 		where
 			u.user_name=#{userName}
 	</select>
@@ -38,7 +38,7 @@
 		select
 			*
 		from
-			user u
+			users u
 		where
 			u.user_name=#{userName}
 		and
@@ -50,7 +50,7 @@
 		select
 			*
 		from
-			user u,department d,positions p
+			users u,department d,positions p
 		where
 			u.dept_id=d.dept_id
 		and
@@ -59,7 +59,7 @@
 	
 	<update id="updateUser" parameterType="User">
 		update
-			user
+			users
 		set
 			user_name=#{userName},
 			password=#{password},

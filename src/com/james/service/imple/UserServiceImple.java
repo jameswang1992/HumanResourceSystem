@@ -38,4 +38,9 @@ public class UserServiceImple implements UserService {
 		return userDao.updateUser(user);
 	}
 
+
+	public User queryUserByUserId(Integer userId) {
+		return userDao.queryUserByUserId(userId);
+	}
+
 }

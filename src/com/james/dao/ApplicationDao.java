@@ -6,9 +6,11 @@ import com.james.entity.Application;
 
 public interface ApplicationDao {
 	
-	int addApplication(Application app);
+	int addApplication(Application application);
 	
 	int deleteApplication(Integer appId);
+	
+	int updateAppStatus(Application application);
 	
 	List<Application> queryAllApplications();
 	

@@ -12,11 +12,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
+import com.james.entity.Application;
 import com.james.entity.Department;
+import com.james.entity.Interview;
 import com.james.entity.Position;
 import com.james.entity.Resume;
 import com.james.entity.User;
+import com.james.service.ApplicationService;
 import com.james.service.DepartmentService;
+import com.james.service.InterviewService;
 import com.james.service.PositionService;
 import com.james.service.ResumeService;
 import com.james.service.UserService;
@@ -33,7 +37,17 @@ public class UserController {
 	private PositionService posService;
 	@Autowired
 	private ResumeService resumeService;
+	@Autowired
+	private ApplicationService appService;
+	@Autowired
+	private InterviewService ivService;
 	
+	/**
+	 * 注册
+	 * @param userName
+	 * @param password
+	 * @return
+	 */
 	@RequestMapping("register")
 	public String register(String userName,String password) {
 		int res = userService.register(userName, password);
@@ -45,11 +59,21 @@ public class UserController {
 		return "user/fail";
 	}
 	
+	/**
+	 * 登录，判断有没有面试信息
+	 * @param userName
+	 * @param password
+	 * @param session
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("login")
-	public String login(String userName,String password,HttpSession session) {
+	public String login(String userName,String password,HttpSession session,Model model) {
 		User user = userService.login(userName, password);
 		session.setAttribute("user", user);
 		if(user.getUserType() == 1) {
+			Interview iv = ivService.queryIVByUserId(user.getUserId());
+			model.addAttribute("iv", iv);
 			return "user/tourist";
 		}else if(user.getUserType() == 0){
 			return "manager/admin";
@@ -57,6 +81,20 @@ public class UserController {
 		return "user/tourist";
 	}
 	
+	/**
+	 * 退出到登录页面
+	 * @return
+	 */
+	@RequestMapping("quit")
+	public String quit() {
+		return "forward:../login.jsp";
+	}
+	
+	/**
+	 * 判断用户名是否重复
+	 * @param userName
+	 * @return
+	 */
 	@RequestMapping("queryUserByUserName")
 	@ResponseBody
 	public String queryUserByUserName(String userName) {
@@ -167,6 +205,22 @@ public class UserController {
 		return "user/modifyPW";
 	}
 	
+	/**
+	 * 查看反馈信息
+	 * @param session
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("showIVinfo")
+	public String showIVinfo(HttpSession session,Model model) {
+		User user = (User) session.getAttribute("user");
+		Interview iv = ivService.queryIVByUserId(user.getUserId());
+		Application app = appService.queryAppByUserId(user.getUserId());
+		model.addAttribute("iv", iv);
+		model.addAttribute("app", app);
+		return "user/showResponse";
+	}
+	
 	
 	@RequestMapping("back")
 	public String back() {
@@ -174,7 +228,6 @@ public class UserController {
 	}
 	
 }
-
 
 
 

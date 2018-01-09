@@ -6,6 +6,20 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf8">
 <title>修改密码</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/index.css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.7.2.js"></script>
+<script type="text/javascript">
+
+	
+	$(function(){
+		$("#quit").click(function(){
+			if(confirm("您确定要退出吗?")){
+				return true;
+			}
+			return false;
+		})
+	})
+	
+</script>
 </head>
 <body background="${pageContext.request.contextPath}/pictures/bg.jpg">
 	<div id="large">			
@@ -14,11 +28,11 @@
 		
 		<div id="left">
 			<ul type="square">
-				<li><a href=""><span>反馈</span></a></li><br/>
+				<li><a href="${pageContext.request.contextPath}/user/showIVinfo"><span>反馈</span></a></li><br/>
 				<li><a href="${pageContext.request.contextPath}/user/readResume"><span>查看简历</span></a></li><br/>
 				<li><a href="${pageContext.request.contextPath}/user/modify"><span>修改密码</span></a></li><br/>
 				<li><a href="${pageContext.request.contextPath}/job/recruitInfo"><span>招聘信息</span></a></li><br/>
-				<li><a href=""><span>退出</span></a></li><br/>
+				<li><a href="${pageContext.request.contextPath}/user/quit" id="quit"><span>退出</span></a></li><br/>
 			</ul>		
 		</div>	
 		

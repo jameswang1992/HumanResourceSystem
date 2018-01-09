@@ -10,5 +10,7 @@ public interface UserService {
 	
 	User queryUserByUserName(String userName);
 	
+	User queryUserByUserId(Integer userId);
+	
 	int modifyUser(User user);
 }

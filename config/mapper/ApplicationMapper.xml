@@ -4,9 +4,9 @@
 <mapper namespace="com.james.dao.ApplicationDao">
 	<insert id="addApplication" parameterType="Application">
 		insert into
-			applications(user_id,recruit_id,app_create_time)
+			applications(user_id,recruit_id,app_create_time,status)
 		values
-			(#{aUser.userId},#{aRecmt.recruitId},#{appCreateTime})
+			(#{aUser.userId},#{aRecmt.recruitId},#{appCreateTime},#{status})
 	</insert>
 	
 	<delete id="deleteApplication" parameterType="int">
@@ -16,11 +16,24 @@
 			app_id=#{appId}
 	</delete>
 	
+	<update id="updateAppStatus" parameterType="Application">
+		update
+			applications
+		set	
+			user_id=#{aUser.userId},
+			recruit_id=#{aRecmt.recruitId},
+			app_create_time=#{appCreateTime},
+			status=#{status}
+		where
+			app_id=#{appId}
+			
+	</update>
+	
 	<select id="queryAllApplications" resultMap="AppResultMap">
 		select
 			*
 		from
-			applications a,user u,recruitments r,department d,positions p
+			applications a,users u,recruitments r,department d,positions p
 		where
 			a.user_id=u.user_id
 		and
@@ -35,7 +48,7 @@
 		select
 			*
 		from
-			applications a,user u,recruitments r,department d,positions p
+			applications a,users u,recruitments r,department d,positions p
 		where
 			a.user_id=u.user_id
 		and
@@ -51,6 +64,7 @@
 	<resultMap type="Application" id="AppResultMap">
 		<id property="appId" column="app_id"/>
 		<result property="appCreateTime" column="app_create_time"/>
+		<result property="status" column="status"/>
 		<association property="aUser" javaType="User">
 			<id property="userId" column="user_id"/>
 			<result property="userName" column="user_name"/>

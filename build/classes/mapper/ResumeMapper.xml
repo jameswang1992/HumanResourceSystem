@@ -64,7 +64,7 @@
 		select
 			*
 		from
-			resume r,user u,department d,positions p
+			resume r,users u,department d,positions p
 		where
 			r.user_id=#{userId}
 		and

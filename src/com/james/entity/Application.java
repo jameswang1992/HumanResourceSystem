@@ -14,18 +14,20 @@ public class Application {
 	private User aUser;
 	private Recruitment aRecmt;
 	private Date appCreateTime;// 简历投递时间
+	private String status;// 应聘信息查看状态
 
 	public Application() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Application(Integer appId, User aUser, Recruitment aRecmt, Date appCreateTime) {
+	public Application(Integer appId, User aUser, Recruitment aRecmt, Date appCreateTime, String status) {
 		super();
 		this.appId = appId;
 		this.aUser = aUser;
 		this.aRecmt = aRecmt;
 		this.appCreateTime = appCreateTime;
+		this.status = status;
 	}
 
 	public Integer getAppId() {
@@ -60,10 +62,18 @@ public class Application {
 		this.appCreateTime = appCreateTime;
 	}
 
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 	@Override
 	public String toString() {
 		return "Application [appId=" + appId + ", aUser=" + aUser + ", aRecmt=" + aRecmt + ", appCreateTime="
-				+ appCreateTime + "]";
+				+ appCreateTime + ", status=" + status + "]";
 	}
 
 }

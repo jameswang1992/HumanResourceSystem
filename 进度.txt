@@ -16,3 +16,7 @@ HumanResourceSystem Day3-night:
 
 HumanResourceSystem Day4:
 完成了添加招聘信息，管理员添加部门职位，准备写投简历和面试
+
+
+HumanResourceSystem Day5:
+预约面试，游客查看反馈，游客页面基本完成，写了三个实体类，在测

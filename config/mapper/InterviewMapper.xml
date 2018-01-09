@@ -20,7 +20,7 @@
 		select
 			*
 		from
-			interviews i,applications a,user u,department d,positions p
+			interviews i,applications a,users u,department d,positions p
 		where
 			i.app_id=a.app_id
 		and 

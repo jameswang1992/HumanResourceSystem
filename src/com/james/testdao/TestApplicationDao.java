@@ -42,7 +42,7 @@ public class TestApplicationDao {
 	public void testAddDept() {
 		User user = userDao.queryUserByUserId(4);
 		Recruitment recmt = recmtDao.queryRecmtByRecmtId(1);
-		Application app = new Application(0, user, recmt, new Date());
+		Application app = new Application(0, user, recmt, new Date(),"δ�鿴");
 		int res = appDao.addApplication(app);
 		System.out.println(res);
 		

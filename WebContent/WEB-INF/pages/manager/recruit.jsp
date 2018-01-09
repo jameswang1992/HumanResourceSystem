@@ -42,7 +42,7 @@
 		
 		<div id="left">
 			<ul type="square">
-				<li><a href=""><span>应聘管理</span></a></li><br/>
+				<li><a href="${pageContext.request.contextPath}/job/showApp"><span>应聘管理</span></a></li><br/>
 				<li><a href="${pageContext.request.contextPath}/job/recruit"><span>招聘管理</span></a></li><br/>
 				<li><a href="${pageContext.request.contextPath}/job/deptPosit"><span>部门职位</span></a></li><br/>
 				<li><a href="${pageContext.request.contextPath}"><span>培训管理</span></a></li><br/>
