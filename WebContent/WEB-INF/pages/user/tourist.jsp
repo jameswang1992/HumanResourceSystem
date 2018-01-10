@@ -9,9 +9,12 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.7.2.js"></script>
 <script type="text/javascript">
 	$(function(){
-		var flag = ${!empty requestScope.iv};
-		if(flag){
+		if(${"未录用" eq requestScope.iv.isHire}){
 			alert("您有面试信息，请去反馈查看!");
+		}else if(${"已录用" eq requestScope.iv.isHire}){
+			alert("恭喜你，您面试通过了");
+		}else if(${"被拒绝" eq requestScope.iv.isHire}){
+			alert("对不起，您投递的简历被拒绝，可以更改简历，投递别的职位");
 		}
 	})
 	

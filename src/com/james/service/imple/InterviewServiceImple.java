@@ -29,4 +29,8 @@ public class InterviewServiceImple implements InterviewService {
 		return ivDao.queryIVsByDeptId(deptId);
 	}
 
+	public int updateIV(Interview interview) {
+		return ivDao.updateInterview(interview);
+	}
+
 }

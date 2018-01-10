@@ -15,9 +15,13 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.james.dao.ApplicationDao;
 import com.james.dao.DepartmentDao;
 import com.james.dao.InterviewDao;
+import com.james.dao.RecruitmentDao;
 import com.james.entity.Application;
 import com.james.entity.Department;
 import com.james.entity.Interview;
+import com.james.entity.Position;
+import com.james.entity.Recruitment;
+import com.james.entity.User;
 
 
 
@@ -33,6 +37,8 @@ public class TestInterviewDao {
 	private InterviewDao interDao;
 	@Autowired
 	private ApplicationDao appDao;
+	@Autowired
+	private RecruitmentDao recmtDao;
 	
 	@Test
 	public void testAddInter() {
@@ -44,13 +50,23 @@ public class TestInterviewDao {
 	
 	@Test
 	public void testQueryInterview() {
-		Interview iv = interDao.queryInterviewByUserId(4);
-		System.out.println(iv);
+		Interview iv = interDao.queryInterviewByUserId(9);
+		User user = iv.getiApp().getaUser();
+		Recruitment recmt1 = iv.getiApp().getaRecmt();
+		Application app = iv.getiApp();
+		Recruitment recmt = recmtDao.queryRecmtByRecmtId(recmt1.getRecruitId());
+		System.out.println(recmt);
+		Department dept = recmt.getrDepartment();
+		Position position = recmt.getrPosition();
+		System.out.println(user);
+		System.out.println(dept);
+		System.out.println(position);
+		System.out.println(app);
 	}
 	
 	@Test
 	public void testQueryInterviewByDeptId() {
-		List<Interview> ivs = interDao.queryIVsByDeptId(1);
+		List<Interview> ivs = interDao.queryIVsByDeptId(4);
 		System.out.println(ivs);
 	}
 	

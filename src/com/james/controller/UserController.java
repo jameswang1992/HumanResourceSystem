@@ -1,5 +1,6 @@
 package com.james.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -79,7 +80,13 @@ public class UserController {
 			return "manager/admin";
 		}else if(user.getUserType() == 3) {
 			List<Interview> ivlist = ivService.queryIVsByDeptId(user.getuDepartment().getDeptId());
-			session.setAttribute("ivlist", ivlist);
+			List<Interview> ivs = new ArrayList<Interview>();
+			for (Interview i : ivlist) {
+				if("Î´Â¼ÓÃ".equals(i.getIsHire())) {
+					ivs.add(i);
+				}
+			}
+			session.setAttribute("ivs", ivs);
 			return "deptManager/main";
 		}
 		return "user/tourist";

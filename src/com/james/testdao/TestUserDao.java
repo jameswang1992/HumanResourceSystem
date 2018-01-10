@@ -40,7 +40,7 @@ public class TestUserDao {
 	
 	@Test
 	public void testQueryUserById() {
-		User user = userDao.queryUserByUserId(4);
+		User user = userDao.queryTouristByUserId(8);
 		System.out.println(user);
 	}
 	
@@ -69,6 +69,12 @@ public class TestUserDao {
 		User user = new User(4, "222", "222", dept, position, new Date(), 1);
 		int res = userDao.updateUser(user);
 		System.out.println(res);
+	}
+	
+	@Test
+	public void testQueryUsersByType() {
+		List<User> users = userDao.queryUsersByUserType();
+		System.out.println(users);
 	}
 	
 }

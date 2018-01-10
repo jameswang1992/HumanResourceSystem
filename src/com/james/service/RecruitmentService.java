@@ -10,5 +10,7 @@ public interface RecruitmentService {
 	
 	int insertRecmt(Recruitment recmt);
 	
+	int updateRecmt(Recruitment recmt);
+	
 	Recruitment queryRecmtByRecmtId(Integer recruitId);
 }

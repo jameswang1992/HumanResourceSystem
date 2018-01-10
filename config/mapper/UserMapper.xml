@@ -24,6 +24,16 @@
 	</select>
 	
 	
+	<select id="queryTouristByUserId" parameterType="int" resultMap="UserResultMap1">
+		select
+			*
+		from
+			users u
+		where
+			u.user_id=#{userId}
+	</select>
+	
+	
 	<select id="queryUserByUserName" parameterType="String" resultMap="UserResultMap">
 		select
 			*
@@ -57,6 +67,19 @@
 			u.position_id=p.position_id
 	</select>
 	
+	<select id="queryUsersByUserType" resultMap="UserResultMap">
+		select
+			*
+		from
+			users u,department d,positions p
+		where
+			u.dept_id=d.dept_id
+		and
+			u.position_id=p.position_id
+		and
+			u.user_type = 2
+	</select>
+	
 	<update id="updateUser" parameterType="User">
 		update
 			users
@@ -88,6 +111,15 @@
 			<result property="positionName" column="position_name"/>
 			<result property="positCreateTime" column="posit_create_time"/>
 		</association>
+	</resultMap>
+	
+	
+	<resultMap type="User" id="UserResultMap1">
+		<id property="userId" column="user_id"/>
+		<result property="userName" column="user_name"/>
+		<result property="password" column="password"/>
+		<result property="entryTime" column="entry_time"/>
+		<result property="userType" column="user_type"/>
 	</resultMap>
 </mapper>
 

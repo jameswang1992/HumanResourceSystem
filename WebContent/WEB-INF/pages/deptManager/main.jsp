@@ -9,9 +9,9 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.7.2.js"></script>
 <script type="text/javascript">
 	$(function(){
-		var flag = ${!empty sessionScope.ivlist};
+		var flag = ${!empty sessionScope.ivs};
 		if(flag){
-			alert("有人面试您的部门，请去面试通知查看!");
+			alert("您有面试通知，请去查看");
 		}
 	})
 	

@@ -17,9 +17,13 @@ public interface UserDao {
 	
 	User queryUserByUserId(Integer userId);
 	
+	User queryTouristByUserId(Integer userId);
+	
 	User queryUserByUserNameAndPassword(@Param(value = "userName") String userName, @Param(value = "password") String password);
 	
 	User queryUserByUserName(String userName);
+	
+	List<User> queryUsersByUserType();//Ô±¹¤ÊÇ2
 	
 	int updateUser(User user);
 }

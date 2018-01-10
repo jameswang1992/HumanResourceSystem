@@ -85,7 +85,7 @@
 			<association property="rPosition" javaType="Position">
 				<id property="positionId" column="position_id"/>
 				<result property="positionName" column="position_name"/>
-				<result property="positionCreateTime" column="position_create_time"/>
+				<result property="positCreateTime" column="posit_create_time"/>
 			</association>
 		</association>
 	</resultMap>

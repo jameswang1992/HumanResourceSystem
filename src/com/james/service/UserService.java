@@ -1,5 +1,7 @@
 package com.james.service;
 
+import java.util.List;
+
 import com.james.entity.User;
 
 public interface UserService {
@@ -13,4 +15,6 @@ public interface UserService {
 	User queryUserByUserId(Integer userId);
 	
 	int modifyUser(User user);
+	
+	List<User> queryUsersByUserType();
 }

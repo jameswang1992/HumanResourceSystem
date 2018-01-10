@@ -10,6 +10,8 @@ public interface InterviewDao {
 	
 	int deleteInterview(Integer interviewId);
 	
+	int updateInterview(Interview interview);
+	
 	Interview queryInterviewByUserId(Integer userId);
 	
 	List<Interview> queryIVsByDeptId(Integer deptId);

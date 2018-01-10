@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf8">
-<title>管理员页面</title>
+<title>员工详细信息</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/index.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.7.2.js"></script>
 <script type="text/javascript">
@@ -41,8 +41,27 @@
 		
 		
 		<div id="right">
-				
+				<table>
+					<tr>
+						<td colspan="4">员工信息</td>
+					</tr>
+					<tr>
+						
+					</tr>
+				</table>
 		</div>					
 	</div>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+

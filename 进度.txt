@@ -20,3 +20,46 @@ HumanResourceSystem Day4:
 
 HumanResourceSystem Day5:
 预约面试，游客查看反馈，游客页面基本完成，写了三个实体类，在测
+
+HumanResourceSystem Day6:
+录用完成，写员工管理
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -29,4 +29,9 @@ public class RecruitmentServiceImple implements RecruitmentService {
 		return recmtDao.queryRecmtByRecmtId(recruitId);
 	}
 
+
+	public int updateRecmt(Recruitment recmt) {
+		return recmtDao.updateRecruitment(recmt);
+	}
+
 }
