@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.james.dao.BonusmalusDao">
+	<insert id="addBonusmalus" parameterType="Bonusmalus">
+		insert into
+			bonusmalus(user_id,bm_salary,bm_reason,bm_time,bm_type)
+		values
+			(#{bUser.userId},#{bmSalary},#{bmReason},#{bmTime},#{bmType})
+	</insert>
+	
+	<select id="queryBMsbyUserId" parameterType="int" resultMap="BmResultMap">
+		select
+			*
+		from
+			bonusmalus b,users u
+		where
+			b.user_id=#{userId}
+			
+	</select>
+	
+	
+	<select id="queryBMsByDate" parameterType="int" resultMap="BmResultMap">
+		select
+			*
+		from
+			bonusmalus b,users u
+		where
+			b.user_id=u.user_id
+		and
+			year(bm_time)=#{bYear}
+		and
+			month(bm_time)=#{bMonth}
+	</select>
+	
+	
+	<resultMap type="Bonusmalus" id="BmResultMap">
+		<id property="bmId" column="bm_id"/>
+		<result property="bmSalary" column="bm_salary"/>
+		<result property="bmReason" column="bm_reason"/>
+		<result property="bmTime" column="bm_time"/>
+		<result property="bmType" column="bm_type"/>
+		<association property="bUser" javaType="User">
+			<id property="userId" column="user_id"/>
+			<result property="userName" column="user_name"/>
+			<result property="password" column="password"/>
+			<result property="entryTime" column="entry_time"/>
+			<result property="userType" column="user_type"/>
+		</association>
+	</resultMap>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

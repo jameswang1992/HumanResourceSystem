@@ -80,7 +80,7 @@ public class Recruitment {
 
 	@Override
 	public String toString() {
-		return "Recruitment [recruitId=" + recruitId + ", rDepartment=" + rDepartment.getDeptName() + ", rPosition=" + rPosition.getPositionName()
+		return "Recruitment [recruitId=" + recruitId + ", rDepartment=" + rDepartment + ", rPosition=" + rPosition
 				+ ", requirement=" + requirement + ", treatment=" + treatment + ", expired=" + expired + "]";
 	}
 

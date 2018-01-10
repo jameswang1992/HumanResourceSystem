@@ -1,5 +1,7 @@
 package com.james.service.imple;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +22,11 @@ public class InterviewServiceImple implements InterviewService {
 
 	public Interview queryIVByUserId(Integer userId) {
 		return ivDao.queryInterviewByUserId(userId);
+	}
+
+
+	public List<Interview> queryIVsByDeptId(Integer deptId) {
+		return ivDao.queryIVsByDeptId(deptId);
 	}
 
 }

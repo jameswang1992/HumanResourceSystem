@@ -4,24 +4,22 @@
 <mapper namespace="com.james.dao.SalaryDao">
 	<insert id="addSalary" parameterType="Salary">
 		insert into
-			salaries(user_id,bm_id,basic_salary,over_salary,social_insurance,s_year,s_month)
+			salaries(user_id,basic_salary,over_salary,social_insurance,total_salary,s_year,s_month)
 		values
-			(#{sUser.userId},#{bm.bmId},#{basicSalary},#{overSalary},#{socialInsurance},#{sYear},#{sMonth})
+			(#{sUser.userId},#{basicSalary},#{overSalary},#{socialInsurance},#{totalSalary},#{sYear},#{sMonth})
 	</insert>
 	
 	<select id="querySalariesByDate" parameterType="int" resultMap="SalaryResultMap">
 		select
 			*
 		from
-			salaries s,users u,bonusmalus b
+			salaries s,users u
 		where
 			s.user_id = u.user_id
 		and
-			s.bm_id = b.bm_id
-		and
-			s_year=#{sYear}
+			s.s_year=#{sYear}
 		and 
-			s_month=#{sMonth}
+			s.s_month=#{sMonth}
 		
 	</select>
 	
@@ -30,6 +28,7 @@
 		<result property="basicSalary" column="basic_salary"/>
 		<result property="overSalary" column="over_salary"/>
 		<result property="socialInsurance" column="social_insurance"/>
+		<result property="totalSalary" column="total_salary"/>
 		<result property="sYear" column="s_year"/>
 		<result property="sMonth" column="s_month"/>
 		<association property="sUser" javaType="User">
@@ -38,13 +37,6 @@
 			<result property="password" column="password"/>
 			<result property="entryTime" column="entry_time"/>
 			<result property="userType" column="user_type"/>
-		</association>
-		<association property="bm" javaType="Bonusmalus">
-			<id property="bmId" column="bm_id"/>
-			<result property="bmSalary" column="bm_salary"/>
-			<result property="bmReason" column="bm_reason"/>
-			<result property="bmTime" column="bm_time"/>
-			<result property="bmType" column="bm_type"/>
 		</association>
 	</resultMap>
 </mapper>

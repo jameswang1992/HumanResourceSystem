@@ -48,6 +48,12 @@ public class TestInterviewDao {
 		System.out.println(iv);
 	}
 	
+	@Test
+	public void testQueryInterviewByDeptId() {
+		List<Interview> ivs = interDao.queryIVsByDeptId(1);
+		System.out.println(ivs);
+	}
+	
 }
 
 

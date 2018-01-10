@@ -11,7 +11,7 @@ import java.util.Date;
 public class Bonusmalus {
 
 	private Integer bmId;
-	private User user;
+	private User bUser;
 	private double bmSalary;
 	private String bmReason;
 	private Date bmTime;
@@ -22,10 +22,10 @@ public class Bonusmalus {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Bonusmalus(Integer bmId, User user, double bmSalary, String bmReason, Date bmTime, String bmType) {
+	public Bonusmalus(Integer bmId, User bUser, double bmSalary, String bmReason, Date bmTime, String bmType) {
 		super();
 		this.bmId = bmId;
-		this.user = user;
+		this.bUser = bUser;
 		this.bmSalary = bmSalary;
 		this.bmReason = bmReason;
 		this.bmTime = bmTime;
@@ -40,12 +40,12 @@ public class Bonusmalus {
 		this.bmId = bmId;
 	}
 
-	public User getUser() {
-		return user;
+	public User getbUser() {
+		return bUser;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setbUser(User bUser) {
+		this.bUser = bUser;
 	}
 
 	public double getBmSalary() {
@@ -82,8 +82,10 @@ public class Bonusmalus {
 
 	@Override
 	public String toString() {
-		return "Bonusmalus [bmId=" + bmId + ", user=" + user + ", bmSalary=" + bmSalary + ", bmReason=" + bmReason
+		return "Bonusmalus [bmId=" + bmId + ", bUser=" + bUser + ", bmSalary=" + bmSalary + ", bmReason=" + bmReason
 				+ ", bmTime=" + bmTime + ", bmType=" + bmType + "]";
 	}
+
+	
 
 }

@@ -10,7 +10,6 @@ public class Salary {
 
 	private Integer salaryId;
 	private User sUser;
-	private Bonusmalus bm;// 奖惩工资
 	private double basicSalary;
 	private double overSalary;// 绩效工资
 	private double socialInsurance;// 社保
@@ -23,23 +22,17 @@ public class Salary {
 		// TODO Auto-generated constructor stub
 	}
 
-	
-
-	public Salary(Integer salaryId, User sUser, Bonusmalus bm, double basicSalary, double overSalary,
-			double socialInsurance, double totalSalary, int sYear, int sMonth) {
+	public Salary(Integer salaryId, User sUser, double basicSalary, double overSalary, double socialInsurance, int sYear, int sMonth) {
 		super();
 		this.salaryId = salaryId;
 		this.sUser = sUser;
-		this.bm = bm;
 		this.basicSalary = basicSalary;
 		this.overSalary = overSalary;
 		this.socialInsurance = socialInsurance;
-		this.setTotalSalary(totalSalary);
+		this.totalSalary = basicSalary+overSalary+socialInsurance;
 		this.sYear = sYear;
 		this.sMonth = sMonth;
 	}
-
-
 
 	public Integer getSalaryId() {
 		return salaryId;
@@ -55,14 +48,6 @@ public class Salary {
 
 	public void setsUser(User sUser) {
 		this.sUser = sUser;
-	}
-
-	public Bonusmalus getBm() {
-		return bm;
-	}
-
-	public void setBm(Bonusmalus bm) {
-		this.bm = bm;
 	}
 
 	public double getBasicSalary() {
@@ -89,6 +74,14 @@ public class Salary {
 		this.socialInsurance = socialInsurance;
 	}
 
+	public double getTotalSalary() {
+		return totalSalary;
+	}
+
+	public void setTotalSalary(double totalSalary) {
+		this.totalSalary = totalSalary;
+	}
+
 	public int getsYear() {
 		return sYear;
 	}
@@ -105,27 +98,11 @@ public class Salary {
 		this.sMonth = sMonth;
 	}
 
-
-	public double getTotalSalary() {
-		double totalSalary = basicSalary+overSalary+socialInsurance;
-		return totalSalary;
-	}
-
-
-
-	public void setTotalSalary(double totalSalary) {
-		this.totalSalary = totalSalary;
-	}
-
-
-
 	@Override
 	public String toString() {
-		return "Salary [salaryId=" + salaryId + ", sUser=" + sUser + ", bm=" + bm + ", basicSalary=" + basicSalary
-				+ ", overSalary=" + overSalary + ", socialInsurance=" + socialInsurance + ", totalSalary=" + totalSalary
-				+ ", sYear=" + sYear + ", sMonth=" + sMonth + "]";
+		return "Salary [salaryId=" + salaryId + ", sUser=" + sUser + ", basicSalary=" + basicSalary + ", overSalary="
+				+ overSalary + ", socialInsurance=" + socialInsurance + ", totalSalary=" + totalSalary + ", sYear="
+				+ sYear + ", sMonth=" + sMonth + "]";
 	}
-	
-	
 
 }

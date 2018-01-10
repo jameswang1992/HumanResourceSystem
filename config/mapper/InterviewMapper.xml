@@ -2,6 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.james.dao.InterviewDao">
+
+
+
 	<insert id="addInterview" parameterType="Interview">
 		insert into
 			interviews(inter_time,inter_address,app_id,is_hire)
@@ -9,12 +12,22 @@
 			(#{interTime},#{interAddress},#{iApp.appId},#{isHire})
 	</insert>
 	
+	
+	
+	
+	
+	
 	<delete id="deleteInterview" parameterType="int">
 		delete from
 			interviews
 		where 
 			interview_id=#{interviewId}
 	</delete>
+	
+	
+	
+	
+	
 	
 	<select id="queryInterviewByUserId" parameterType="int" resultMap="InterviewResultMap">
 		select
@@ -31,6 +44,43 @@
 			a.user_id=#{userId}
 	</select>
 	
+	
+	<select id="queryIVsByDeptId" parameterType="int" resultMap="IvResultMap">
+		select
+			*
+		from
+			interviews i,applications a,recruitments r
+		where
+			i.app_id=a.app_id
+		and
+			a.recruit_id = r.recruit_id
+		and 
+			r.dept_id = #{deptId}
+		
+	</select>
+	
+	<resultMap type="Interview" id="IvResultMap">
+		<id property="interviewId" column="interview_id"/>
+		<result property="interTime" column="inter_time"/>
+		<result property="interAddress" column="inter_address"/>
+		<result property="isHire" column="is_hire"/>
+		<association property="iApp" javaType="Application">
+			<id property="appId" column="app_id"/>
+			<result property="appCreateTime" column="app_create_time"/>
+			<result property="status" column="status"/>
+			<association property="aRecmt" javaType="Recruitment">
+				<id property="recruitId" column="recruit_id"/>
+				<result property="requirement" column="requirement"/>
+				<result property="treatment" column="treatment"/>
+				<result property="expired" column="expired"/>
+			</association>
+		</association>
+	</resultMap>
+	
+	
+	
+	
+	
 	<resultMap type="Interview" id="InterviewResultMap">
 		<id property="interviewId" column="interview_id"/>
 		<result property="interTime" column="inter_time"/>
@@ -39,6 +89,7 @@
 		<association property="iApp" javaType="Application">
 			<id property="appId" column="app_id"/>
 			<result property="appCreateTime" column="app_create_time"/>
+			<result property="status" column="status"/>
 			<association property="aUser" javaType="User">
 				<id property="userId" column="user_id"/>
 				<result property="userName" column="user_name"/>

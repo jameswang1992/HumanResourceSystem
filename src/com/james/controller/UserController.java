@@ -77,6 +77,10 @@ public class UserController {
 			return "user/tourist";
 		}else if(user.getUserType() == 0){
 			return "manager/admin";
+		}else if(user.getUserType() == 3) {
+			List<Interview> ivlist = ivService.queryIVsByDeptId(user.getuDepartment().getDeptId());
+			session.setAttribute("ivlist", ivlist);
+			return "deptManager/main";
 		}
 		return "user/tourist";
 	}
