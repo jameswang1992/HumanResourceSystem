@@ -77,7 +77,7 @@
 					
 					<tr>
 						<td>年龄</td>
-						<td><input type="text" name="age" placeholder="请输入年龄" value="${requestScope.oldResume.age}" required="required"></td>
+						<td><input type="number" name="age" placeholder="请输入年龄" value="${requestScope.oldResume.age}" required="required"></td>
 						<td>学历</td>
 						<td>
 							<select name="academic">

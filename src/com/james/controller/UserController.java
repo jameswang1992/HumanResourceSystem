@@ -1,6 +1,7 @@
 package com.james.controller;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -14,12 +15,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
 import com.james.entity.Application;
+import com.james.entity.Attendance;
 import com.james.entity.Department;
 import com.james.entity.Interview;
 import com.james.entity.Position;
 import com.james.entity.Resume;
 import com.james.entity.User;
 import com.james.service.ApplicationService;
+import com.james.service.AttendanceService;
 import com.james.service.DepartmentService;
 import com.james.service.InterviewService;
 import com.james.service.PositionService;
@@ -42,6 +45,8 @@ public class UserController {
 	private ApplicationService appService;
 	@Autowired
 	private InterviewService ivService;
+	@Autowired
+	private AttendanceService attendService;
 	
 	/**
 	 * 注册
@@ -88,6 +93,14 @@ public class UserController {
 			}
 			session.setAttribute("ivs", ivs);
 			return "deptManager/main";
+		}else if(user.getUserType() == 2) {
+			Calendar currentTime = Calendar.getInstance();
+			int aYear = currentTime.get(Calendar.YEAR);   
+	        int aMonth = currentTime.get(Calendar.MONTH)+1; //第一个月从0开始，所以得到月份＋1  
+	        int aDay = currentTime.get(Calendar.DAY_OF_MONTH);
+	        Attendance attendance = attendService.queryAttByUserIdAndDate(user.getUserId(), aYear, aMonth, aDay);
+	        model.addAttribute("attendance", attendance);
+			return "employee/emp";
 		}
 		return "user/tourist";
 	}

@@ -26,6 +26,8 @@ HumanResourceSystem Day6:
 HumanResourceSystem Day6-night:
 完成赏，人事调动，部门职位的删改，写员工页面
 
+HumanResourceSystem Day7:
+员工查看个人信息和修改，员工考勤，写员工查看个人考勤
 
 
 

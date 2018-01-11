@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.james.dao.AttendanceDao">
+	<insert id="addAttendance" parameterType="Attendance">
+		insert into
+			attendances(user_id,race_start,game_over,a_year,a_month,a_day,is_late,is_leave_early,absence_days)
+		values
+			(#{aUser.userId},#{raceStart},#{gameOver},#{aYear},#{aMonth},#{aDay},#{isLate},#{isLeaveEarly},#{absenceDays})
+	</insert>
+	
+	<update id="updateAttendance" parameterType="Attendance">
+		update
+			attendances
+		set
+			user_id=#{aUser.userId},
+			race_start=#{raceStart},
+			game_over=#{gameOver},
+			a_year=#{aYear},
+			a_month=#{aMonth},
+			a_day=#{aDay},
+			is_late=#{isLate},
+			is_leave_early=#{isLeaveEarly},
+			absence_days=#{absenceDays}
+		where
+			attend_id=#{attendId}
+	</update>
+	
+
+	
+	<select id="queryAttByYearAndMonth" parameterType="int" resultMap="AttResultMap">
+		select
+			*
+		from
+			attendances a,users u,department d,positions p
+		where
+			a.user_id=u.user_id
+		and
+			u.dept_id=d.dept_id
+		and
+			u.position_id=p.position_id
+		and
+			a.a_year=#{aYear}
+		and
+			a.a_month=#{aMonth}
+	</select>
+	
+	<select id="queryAttByUserIdAndDate" parameterType="int" resultMap="AttResultMap">
+		select
+			*
+		from
+			attendances a,users u,department d,positions p
+		where
+			a.user_id=u.user_id
+		and
+			u.dept_id=d.dept_id
+		and
+			u.position_id=p.position_id
+		and
+			a.a_year=#{aYear}
+		and
+			a.a_month=#{aMonth}
+		and 
+			a.a_day=#{aDay}
+		and
+			a.user_id=#{userId}
+	</select>
+	
+	
+	
+	<select id="queryAbsenceDaysByUserIdAndYearAndMonth" parameterType="int" resultType="int">
+		select
+			min(absence_days)
+		from
+			attendances a,users u
+		where
+			a.user_id=u.user_id
+		and
+			a.a_year=#{aYear}
+		and
+			a.a_month=#{aMonth}
+		and
+			a.user_id=#{userId}
+		
+	</select>
+	
+	
+	
+	<select id="queryAttByUserIdAndYearAndMonth" parameterType="int" resultMap="AttResultMap">
+		select
+			*
+		from
+			attendances a,users u,department d,positions p
+		where
+			a.user_id=u.user_id
+		and
+			u.dept_id=d.dept_id
+		and
+			u.position_id=p.position_id
+		and
+			a.a_year=#{aYear}
+		and
+			a.a_month=#{aMonth}
+		and
+			a.user_id=#{userId}
+	</select>
+	
+	
+	
+	
+	<resultMap type="Attendance" id="AttResultMap">
+		<id property="attendId" column="attend_id"/>
+		<result property="raceStart" column="race_start"/>
+		<result property="gameOver" column="game_over"/>
+		<result property="aYear" column="a_year"/>
+		<result property="aMonth" column="a_month"/>
+		<result property="aDay" column="a_day"/>
+		<result property="isLate" column="is_late"/>
+		<result property="isLeaveEarly" column="is_leave_early"/>
+		<result property="absenceDays" column="absence_days"/>
+		<association property="aUser" javaType="User">
+			<id property="userId" column="user_id"/>
+			<result property="userName" column="user_name"/>
+			<result property="password" column="password"/>
+			<result property="entryTime" column="entry_time"/>
+			<result property="userType" column="user_type"/>
+			<association property="uDepartment" javaType="Department">
+				<id property="deptId" column="dept_id"/>
+				<result property="deptName" column="dept_name"/>
+				<result property="deptCreateTime" column="dept_create_time"/>
+			</association>
+			<association property="uPosition" javaType="Position">
+				<id property="positionId" column="position_id"/>
+				<result property="positionName" column="position_name"/>
+				<result property="positCreateTime" column="posit_create_time"/>
+			</association>
+		</association>
+	</resultMap>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

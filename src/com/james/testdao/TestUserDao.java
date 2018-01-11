@@ -3,6 +3,7 @@ package com.james.testdao;
 
 
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -83,6 +84,17 @@ public class TestUserDao {
 		System.out.println(users);
 	}
 	
+	@Test
+	public void testDate() {
+		Calendar currentTime = Calendar.getInstance();
+		Integer year = currentTime.get(Calendar.YEAR);   
+	    Integer month = currentTime.get(Calendar.MONTH)+1; //第一个月从0开始，所以得到月份＋1  
+	    Integer day = currentTime.get(Calendar.DAY_OF_MONTH); 
+	    System.out.println(day);
+	    currentTime.set(year, month, day, 9, 0, 0);
+	    System.out.println(currentTime.get(Calendar.DAY_OF_MONTH));
+		
+	}
 }
 
 
