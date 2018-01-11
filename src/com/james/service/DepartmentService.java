@@ -12,5 +12,9 @@ public interface DepartmentService {
 	
 	int insertDept(Department dept);
 	
+	int updateDept(Department dept);
+	
+	int deleteDept(Integer deptId);
+	
 	Department queryDeptByDeptName(String deptName);
 }

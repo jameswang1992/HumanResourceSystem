@@ -36,7 +36,7 @@
 				<li><a href=""><span>奖惩管理</span></a></li><br/>
 				<li><a href=""><span>薪资管理</span></a></li><br/>
 				<li><a href=""><span>工资异议</span></a></li><br/>
-				<li><a href=""><span>退出</span></a></li><br/>
+				<li><a href="${pageContext.request.contextPath}/user/quit" id="quit"><span>退出</span></a></li><br/>
 			</ul>		
 		</div>	
 		
@@ -52,7 +52,7 @@
 					<tr>
 						<td>${emp.userId}</td>
 						<td><a href="${pageContext.request.contextPath}/happy/specificInfo?userId=${emp.userId}">${emp.userName}</a></td>
-						<td><a href="#">人事调动</a></td>
+						<td><a href="${pageContext.request.contextPath}/happy/transfer?userId=${emp.userId}">人事调动</a></td>
 						<td><a href="#">考勤</a></td>
 						<td><a href="#">工资发放</a></td>
 						<td><a href="#">开除</a></td>

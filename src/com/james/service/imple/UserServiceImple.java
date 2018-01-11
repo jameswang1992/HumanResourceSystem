@@ -50,4 +50,14 @@ public class UserServiceImple implements UserService {
 		return userDao.queryUsersByUserType();
 	}
 
+
+	public List<User> queryUsersByDeptId(Integer deptId) {
+		return userDao.queryUsersByDeptId(deptId);
+	}
+
+
+	public List<User> queryUsersByPositionId(Integer positionId) {
+		return userDao.queryUsersByPositionId(positionId);
+	}
+
 }

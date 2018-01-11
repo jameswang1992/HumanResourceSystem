@@ -23,7 +23,8 @@ HumanResourceSystem Day5:
 
 HumanResourceSystem Day6:
 录用完成，写员工管理
-
+HumanResourceSystem Day6-night:
+完成赏，人事调动，部门职位的删改，写员工页面
 
 
 

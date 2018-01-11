@@ -8,6 +8,19 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf8">
 <title>应聘信息</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/index.css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.7.2.js"></script>
+<script type="text/javascript">
+	
+	$(function(){
+		$("#quit").click(function(){
+			if(confirm("您确定要退出吗?")){
+				return true;
+			}
+			return false;
+		})
+	})
+	
+</script>
 </head>
 <body background="${pageContext.request.contextPath}/pictures/bg.jpg">
 	<div id="large">			
@@ -24,7 +37,7 @@
 				<li><a href=""><span>奖惩管理</span></a></li><br/>
 				<li><a href=""><span>薪资管理</span></a></li><br/>
 				<li><a href=""><span>工资异议</span></a></li><br/>
-				<li><a href=""><span>退出</span></a></li><br/>
+				<li><a href="${pageContext.request.contextPath}/user/quit" id="quit"><span>退出</span></a></li><br/>
 			</ul>		
 		</div>	
 		

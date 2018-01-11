@@ -10,6 +10,9 @@
 	</insert>
 	
 	
+	
+	
+	
 	<select id="queryUserByUserId" parameterType="int" resultMap="UserResultMap">
 		select
 			*
@@ -24,6 +27,9 @@
 	</select>
 	
 	
+	
+	
+	
 	<select id="queryTouristByUserId" parameterType="int" resultMap="UserResultMap1">
 		select
 			*
@@ -34,6 +40,9 @@
 	</select>
 	
 	
+	
+	
+	
 	<select id="queryUserByUserName" parameterType="String" resultMap="UserResultMap">
 		select
 			*
@@ -42,6 +51,8 @@
 		where
 			u.user_name=#{userName}
 	</select>
+	
+	
 	
 	
 	<select id="queryUserByUserNameAndPassword" resultMap="UserResultMap">
@@ -56,6 +67,8 @@
 	</select>
 	
 	
+	
+	
 	<select id="queryAllUsers" resultMap="UserResultMap">
 		select
 			*
@@ -66,6 +79,9 @@
 		and
 			u.position_id=p.position_id
 	</select>
+	
+	
+	
 	
 	<select id="queryUsersByUserType" resultMap="UserResultMap">
 		select
@@ -80,6 +96,9 @@
 			u.user_type = 2
 	</select>
 	
+	
+	
+	
 	<update id="updateUser" parameterType="User">
 		update
 			users
@@ -93,6 +112,40 @@
 		where 
 			user_id=#{userId}
 	</update>
+	
+	
+	
+	<select id="queryUsersByDeptId" parameterType="int" resultMap="UserResultMap">
+		select
+			*
+		from
+			users u,department d,positions p
+		where
+			u.dept_id=d.dept_id
+		and
+			u.position_id=p.position_id
+		and
+			u.dept_id =#{deptId}
+	</select>
+	
+	
+	
+	
+	<select id="queryUsersByPositionId" parameterType="int" resultMap="UserResultMap">
+		select
+			*
+		from
+			users u,department d,positions p
+		where
+			u.dept_id=d.dept_id
+		and
+			u.position_id=p.position_id
+		and
+			u.position_id =#{positionId}
+	</select>
+	
+	
+	
 	
 	
 	<resultMap type="User" id="UserResultMap">

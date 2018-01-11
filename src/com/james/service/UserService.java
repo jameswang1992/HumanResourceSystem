@@ -17,4 +17,8 @@ public interface UserService {
 	int modifyUser(User user);
 	
 	List<User> queryUsersByUserType();
+	
+	List<User> queryUsersByDeptId(Integer deptId);
+	
+	List<User> queryUsersByPositionId(Integer positionId);
 }

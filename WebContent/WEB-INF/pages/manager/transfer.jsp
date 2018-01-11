@@ -5,12 +5,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf8">
-<title>招聘管理</title>
+<title>人事调动</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/index.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.7.2.js"></script>
 <script type="text/javascript">
-
-
+	
 	$(function(){
 		$("#quit").click(function(){
 			if(confirm("您确定要退出吗?")){
@@ -19,7 +18,6 @@
 			return false;
 		})
 	})
-	
 	
 	
 	$(function(){
@@ -45,7 +43,34 @@
 			
 	})
 	
-
+	
+	
+	$(function(){
+		$("#transfer").click(function(){
+			var userId = ${requestScope.user.userId};
+			var deptId = $("select[name='deptId']").val();
+			var positionId = $("select[name='positionId']").val();
+			$.ajax({
+				url:"${pageContext.request.contextPath}/happy/confirmTransfer",
+				type:"post",
+				dataType:"text",
+				data:{deptId:deptId,userId:userId,positionId:positionId},
+				success:function(data){
+					if(data == 1){
+						alert("调动成功");
+					}else{
+						alert("调动失败");
+					}
+				},
+				error:function(x,msg,obj){
+					alert(msg);
+				}
+			})
+			return false;			
+		})
+			
+	})
+	
 </script>
 </head>
 <body background="${pageContext.request.contextPath}/pictures/bg.jpg">
@@ -58,8 +83,8 @@
 				<li><a href="${pageContext.request.contextPath}/job/showApp"><span>应聘管理</span></a></li><br/>
 				<li><a href="${pageContext.request.contextPath}/job/recruit"><span>招聘管理</span></a></li><br/>
 				<li><a href="${pageContext.request.contextPath}/job/deptPosit"><span>部门职位</span></a></li><br/>
-				<li><a href="${pageContext.request.contextPath}"><span>培训管理</span></a></li><br/>
-				<li><a href=""><span>员工管理</span></a></li><br/>
+				<li><a href=""><span>培训管理</span></a></li><br/>
+				<li><a href="${pageContext.request.contextPath}/happy/showEmployees"><span>员工管理</span></a></li><br/>
 				<li><a href=""><span>奖惩管理</span></a></li><br/>
 				<li><a href=""><span>薪资管理</span></a></li><br/>
 				<li><a href=""><span>工资异议</span></a></li><br/>
@@ -69,50 +94,28 @@
 		
 		
 		<div id="right">
-			<form action="${pageContext.request.contextPath}/job/postRecmt" method="post">
-				<table border="1" bordercolor="gray" cellpadding="10" cellspacing="0">
+			<h3>请选择调动的部门职位</h3>
+			<form action="${pageContext.request.contextPath}/happy/showEmployees" method="post">
+				<table align="center">
 					<tr>
-						<td colspan="2">发布招聘信息</td>
-					</tr>
-					<tr>
-						<td>部门招聘</td>
 						<td>
 							<select name="deptId">
-								<option value="0">部门</option>
 								<c:forEach items="${requestScope.depts}" var="dept">
-									<option value="${dept.deptId}">${dept.deptName}</option>
+									<option value="${dept.deptId}" <c:if test="${dept.deptName eq requestScope.user.uDepartment.deptName}">selected</c:if>>${dept.deptName}</option>
 								</c:forEach>
 							</select>
-						</td>
-					</tr>
-					<tr>
-						<td>职位招聘</td>
-						<td>
 							<select name="positionId">
-								<option value="无">职位</option>
+								<c:if test="${!empty requestScope.user}">
+									<c:forEach items="${requestScope.positions}" var="position">
+										<option value="${position.positionId}" <c:if test="${position.positionName eq requestScope.user.uPosition.positionName}">selected</c:if>>${position.positionName}</option>
+									</c:forEach>
+								</c:if>
 							</select>
 						</td>
-					</tr>
-					<tr>
-						<td>任职要求</td>
-						<td><input type="text" name="requirement"></td>
-					</tr>
-					<tr>
-						<td>薪资待遇</td>
 						<td>
-							<select name="treatment">
-								<option value="3000-4000">3000-4000</option>
-								<option value="4000-5000">4000-5000</option>
-								<option value="5000-6000">5000-6000</option>
-								<option value="6000-7000">6000-7000</option>
-								<option value="7000-8000">7000-8000</option>
-								<option value="8000-10000">8000-10000</option>
-							</select>
+							<input type="submit" value="调动" id="transfer">
+							<button onclick="window.location='${pageContext.request.contextPath}/happy/back'">返回</button>
 						</td>
-					</tr>
-					<tr>
-						<td><input type="submit" value="发布"></td>
-						<td><button onclick="window.location='${pageContext.request.contextPath}/job/back'">返回</button></td>
 					</tr>
 				</table>
 			</form>

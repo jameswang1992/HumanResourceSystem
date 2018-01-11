@@ -77,6 +77,12 @@ public class TestUserDao {
 		System.out.println(users);
 	}
 	
+	@Test
+	public void testQueryUsersBydeptId() {
+		List<User> users = userDao.queryUsersByDeptId(9);
+		System.out.println(users);
+	}
+	
 }
 
 

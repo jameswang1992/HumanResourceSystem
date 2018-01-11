@@ -11,4 +11,8 @@ public interface PositionService {
 	Position queryPositionByPositionId(Integer positionId);
 	
 	int insertPosition(Position position);
+	
+	int updatePosition(Position position);
+	
+	int deletePosition(Integer positionId);
 }

@@ -25,6 +25,10 @@ public interface UserDao {
 	
 	List<User> queryUsersByUserType();//Ô±¹¤ÊÇ2
 	
+	List<User> queryUsersByDeptId(Integer deptId);
+	
+	List<User> queryUsersByPositionId(Integer positionId);
+	
 	int updateUser(User user);
 }
 

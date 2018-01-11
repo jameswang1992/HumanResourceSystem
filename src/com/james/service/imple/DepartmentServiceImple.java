@@ -35,4 +35,14 @@ public class DepartmentServiceImple implements DepartmentService {
 		return deptDao.queryDepartmentByDeptName(deptName);
 	}
 
+
+	public int updateDept(Department dept) {
+		return deptDao.updateDepartment(dept);
+	}
+
+
+	public int deleteDept(Integer deptId) {
+		return deptDao.deleteDepartment(deptId);
+	}
+
 }

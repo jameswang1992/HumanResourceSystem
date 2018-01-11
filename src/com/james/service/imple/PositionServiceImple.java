@@ -27,4 +27,13 @@ public class PositionServiceImple implements PositionService {
 		return posDao.addPosition(position);
 	}
 
+
+	public int updatePosition(Position position) {
+		return posDao.updatePosition(position);
+	}
+
+	public int deletePosition(Integer positionId) {
+		return posDao.deletePosition(positionId);
+	}
+
 }

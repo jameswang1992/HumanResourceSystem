@@ -16,6 +16,17 @@
 			position_id=#{positionId}
 	</delete>
 	
+	<update id="updatePosition" parameterType="Position">
+		update
+			positions
+		set
+			position_name = #{positionName},
+			dept_id = #{pDepartment.deptId},
+			posit_create_time=#{positCreateTime}
+		where
+			position_id = #{positionId}
+	</update>
+	
 	<select id="queryPositionByPositionId" parameterType="int" resultMap="PositionResultMap">
 		select
 			*
