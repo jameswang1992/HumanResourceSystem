@@ -13,7 +13,7 @@ public class Salary {
 	private double basicSalary;
 	private double overSalary;// 绩效工资
 	private double socialInsurance;// 社保
-	private double totalSalary;
+	private double totalSalary;//还没算奖惩
 	private int sYear;
 	private int sMonth;
 

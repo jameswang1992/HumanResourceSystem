@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSON;
 import com.james.entity.Attendance;
 import com.james.entity.Resume;
 import com.james.entity.User;
@@ -178,15 +179,114 @@ public class CryController {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	@RequestMapping("back")
-	public String back() {
+	/**
+	 * 忘了打卡
+	 * @param session
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("goCheck")
+	public String goCheck(HttpSession session,Model model) {
+		User user = (User) session.getAttribute("user");
+		Calendar currentTime = Calendar.getInstance();
+		int aYear = currentTime.get(Calendar.YEAR);   
+        int aMonth = currentTime.get(Calendar.MONTH)+1; //第一个月从0开始，所以得到月份＋1  
+        int aDay = currentTime.get(Calendar.DAY_OF_MONTH);
+        Attendance attendance = attendService.queryAttByUserIdAndDate(user.getUserId(), aYear, aMonth, aDay);
+        model.addAttribute("attendance", attendance);
 		return "employee/emp";
+	}
+	
+	/**
+	 * 我的考勤
+	 * @param session
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("showAttendance")
+	public String showAttendance(HttpSession session,Model model) {
+		User user = (User) session.getAttribute("user");
+		Calendar currentTime = Calendar.getInstance();
+		int aYear = currentTime.get(Calendar.YEAR);   
+        int aMonth = currentTime.get(Calendar.MONTH)+1;
+        List<Attendance> attends = attendService.queryAttByUserIdAndYearAndMonth(user.getUserId(), aYear, aMonth);
+        int absenceDays = attendService.queryAbsenceDaysByUserIdAndYearAndMonth(user.getUserId(), aYear, aMonth);
+        model.addAttribute("attends", attends);
+        model.addAttribute("aYear", aYear);
+        model.addAttribute("aMonth", aMonth);
+        model.addAttribute("absenceDays", absenceDays);
+		return "employee/showAttendance";
+	}
+	
+	
+	/**
+	 * 查看别的时间的考勤
+	 * @param aYear
+	 * @param aMonth
+	 * @param session
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("searchRecord")
+	public String searchRecord(int aYear,int aMonth,HttpSession session,Model model) {
+		System.out.println(aYear);
+		System.out.println(aMonth);
+		User user = (User) session.getAttribute("user");
+		int absenceDays = 0;
+		List<Attendance> attends = attendService.queryAttByUserIdAndYearAndMonth(user.getUserId(), aYear, aMonth);
+		if(attends.size() == 0) {
+            switch (aMonth) {
+    		case 1:case 3:case 5:case 7:case 8:case 10:case 12:
+    			absenceDays = 31;		
+    			break;
+    		case 4:case 6:case 9:case 11:
+    			absenceDays = 30;
+    			break;
+    		case 2:
+    			if((aYear%4==0 && aYear%100!=0)|| aYear%400==0){
+    				absenceDays = 29;
+    			}else {
+    				absenceDays = 28;
+    			}
+    		default:
+    			break;
+    		}
+        }else {
+        	absenceDays = attendService.queryAbsenceDaysByUserIdAndYearAndMonth(user.getUserId(), aYear, aMonth);
+        }
+		model.addAttribute("attends", attends);
+		model.addAttribute("aYear", aYear);
+        model.addAttribute("aMonth", aMonth);
+		model.addAttribute("absenceDays", absenceDays);
+		return "employee/showAttendance";
+	}
+	
+	@RequestMapping("backup")
+	public String backup(HttpSession session,Model model) {
+		System.out.println("111");
+		User user = (User) session.getAttribute("user");
+		Calendar currentTime = Calendar.getInstance();
+		int aYear = currentTime.get(Calendar.YEAR);   
+        int aMonth = currentTime.get(Calendar.MONTH)+1; //第一个月从0开始，所以得到月份＋1  
+        int aDay = currentTime.get(Calendar.DAY_OF_MONTH);
+        Attendance attendance = attendService.queryAttByUserIdAndDate(user.getUserId(), aYear, aMonth, aDay);
+        model.addAttribute("attendance", attendance);
+		return "employee/emp";
+	}
+	
+	@RequestMapping("updatePW")
+	public String updatePW() {
+		System.out.println("111");
+		return "employee/updatePW";
+	}
+	
+	
+	@RequestMapping("updatePW1")
+	public String updatePW1(String password,HttpSession session) {
+		User user = (User) session.getAttribute("user");
+		user.setPassword(password);
+		int res = userService.modifyUser(user);
+		return "employee/updatePW";
 	}
 }
 

@@ -4,19 +4,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf8">
-<title>员工页面</title>
+<title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/index.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.7.2.js"></script>
 <script type="text/javascript">
-	$(function(){
-		if(${!empty requestScope.attendance.raceStart}){
-			$("#checkin").attr("disabled",true);
-		}
-		if(${!empty requestScope.attendance.gameOver}){
-			$("#checkout").attr("disabled",true);
-		}
-	})
-	
 	
 	$(function(){
 		$("#quit").click(function(){
@@ -25,56 +16,6 @@
 			}
 			return false;
 		})
-	})
-	
-	
-	$(function(){
-		$("#checkin").click(function(){
-			$.ajax({
-				url:"${pageContext.request.contextPath}/cry/checkin",
-				type:"post",
-				dataType:"text",
-				data:{},
-				success:function(data){
-					if(data == 1){
-						alert("上班打卡成功");
-						$("#checkin").attr("disabled",true);
-					}else{
-						alert("打卡失败");
-					}
-				},
-				error:function(x,msg,obj){
-					alert(msg);
-				}
-			})
-			return false;
-		})
-		
-		
-		$("#checkout").click(function(){
-			$.ajax({
-				url:"${pageContext.request.contextPath}/cry/checkout",
-				type:"post",
-				dataType:"text",
-				data:{},
-				success:function(data){
-					if(data == 1){
-						alert("下班打卡成功");
-						$("#checkout").attr("disabled",true);
-					}else if(data == 2){
-						alert("您还没有上班打卡，请先上班打卡");
-					}else{
-						alert("下班打卡失败");
-					}
-				},
-				error:function(x,msg,obj){
-					alert(msg);
-				}
-			})
-			return false;
-		})
-		
-		
 	})
 	
 </script>
@@ -100,8 +41,12 @@
 		
 		<div id="right">
 			<div align="center">
-				<button id="checkin">上班打卡</button><br/>
-				<button id="checkout">下班打卡</button>
+				<h3>来来来，改我</h3>
+				<form action="${pageContext.request.contextPath}/cry/updatePW1" method="post">
+					原始密码：<input type="text" value="${sessionScope.user.password}" readonly="readonly"><br/>
+					修改密码：<input type="text" name="password" required="required"><br/>
+						<input type="submit" value="确认">
+				</form>
 			</div>
 		</div>					
 	</div>

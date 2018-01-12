@@ -28,7 +28,8 @@ HumanResourceSystem Day6-night:
 
 HumanResourceSystem Day7:
 员工查看个人信息和修改，员工考勤，写员工查看个人考勤
-
+HumanResourceSystem Day7-night:
+完成员工查看个人考勤，管理员查看员工考勤，修改密码，写培训和薪资
 
 
 

@@ -40,7 +40,7 @@
 		<div id="right">
 			<form action="${pageContext.request.contextPath}/user/modifyPW" method="post">
 				原始密码:<input type="text" value="${requestScope.password}" readonly="readonly"><br/>
-				新的密码:<input type="text" name="password"><br/>
+				新的密码:<input type="text" name="password" required="required"><br/>
 					<input type="submit" value="确定">
 			</form>
 		</div>					

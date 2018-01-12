@@ -37,6 +37,7 @@ public class TestUserDao {
 		User user = new User(0, "111", "111", dept, position, new Date(), 0);
 		int res = userDao.addUser(user);
 		System.out.println(res);
+		/* $("#table").append("<tr><td><f:formatDate value='"+item.raceStart+"' pattern='yyyy-MM-dd HH:mm'/></td><td><f:formatDate value='"+item.gameOver+"' pattern='yyyy-MM-dd HH:mm'/></td><td>"+item.isLate+"</td><td>"+item.isLeaveEarly+"</td></tr>"); */
 	}
 	
 	@Test

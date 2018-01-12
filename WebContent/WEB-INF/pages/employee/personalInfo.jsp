@@ -58,12 +58,12 @@
 		<div id="left">
 			<ul type="square">
 				<li><a href="${pageContext.request.contextPath}/cry/personalInfo"><span>个人信息</span></a></li><br/>
-				<li><a href="${pageContext.request.contextPath}/"><span>我的考勤</span></a></li><br/>
+				<li><a href="${pageContext.request.contextPath}/cry/showAttendance"><span>我的考勤</span></a></li><br/>
 				<li><a href="${pageContext.request.contextPath}/"><span>修改密码</span></a></li><br/>
 				<li><a href=""><span>我的奖惩</span></a></li><br/>
-				<li><a href="${pageContext.request.contextPath}/"><span>部门职位</span></a></li><br/>
+				<li><a href=""><span>部门职位</span></a></li><br/>
 				<li><a href=""><span>我的薪资</span></a></li><br/>
-				<li><a href=""><span>点我去签到</span></a></li><br/>
+				<li><a href="${pageContext.request.contextPath}/cry/goCheck"><span>点我去签到</span></a></li><br/>
 				<li><a href="${pageContext.request.contextPath}/user/quit" id="quit"><span>退出</span></a></li><br/>
 			</ul>		
 		</div>	
@@ -108,7 +108,7 @@
 					</tr>
 					<tr>
 						<td colspan="2"><input type="submit" value="保存" id="submit"></td>
-						<td colspan="2"><button onclick="window.location='${pageContext.request.contextPath}/cry/back'" >返回</button></td>
+						<td colspan="2"><button onclick="window.location='${pageContext.request.contextPath}/cry/backup'" >返回</button></td>
 					</tr>
 				</table>
 			</form>

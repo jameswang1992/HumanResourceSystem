@@ -21,6 +21,13 @@
 	})
 	
 	
+	$(function(){
+		$("#back").click(function(){
+			window.location.href="${pageContext.request.contextPath}/job/back";
+		})
+	})
+	
+	
 	
 	$(function(){
 		$("select[name='deptId']").change(function(){
@@ -59,7 +66,7 @@
 				<li><a href="${pageContext.request.contextPath}/job/recruit"><span>招聘管理</span></a></li><br/>
 				<li><a href="${pageContext.request.contextPath}/job/deptPosit"><span>部门职位</span></a></li><br/>
 				<li><a href="${pageContext.request.contextPath}"><span>培训管理</span></a></li><br/>
-				<li><a href=""><span>员工管理</span></a></li><br/>
+				<li><a href="${pageContext.request.contextPath}/happy/showEmployees"><span>员工管理</span></a></li><br/>
 				<li><a href=""><span>奖惩管理</span></a></li><br/>
 				<li><a href=""><span>薪资管理</span></a></li><br/>
 				<li><a href=""><span>工资异议</span></a></li><br/>
@@ -112,7 +119,7 @@
 					</tr>
 					<tr>
 						<td><input type="submit" value="发布"></td>
-						<td><button onclick="window.location='${pageContext.request.contextPath}/job/back'">返回</button></td>
+						<td><input type="button" value="返回" id="back"></td>
 					</tr>
 				</table>
 			</form>

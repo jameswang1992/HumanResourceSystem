@@ -4,6 +4,7 @@ package com.james.controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.james.entity.Application;
+import com.james.entity.Attendance;
 import com.james.entity.Bonusmalus;
 import com.james.entity.Department;
 import com.james.entity.Interview;
@@ -23,6 +25,7 @@ import com.james.entity.Position;
 import com.james.entity.Recruitment;
 import com.james.entity.Resume;
 import com.james.entity.User;
+import com.james.service.AttendanceService;
 import com.james.service.BonusmalusService;
 import com.james.service.DepartmentService;
 import com.james.service.InterviewService;
@@ -49,6 +52,8 @@ public class HappyController {
 	private DepartmentService deptService;
 	@Autowired
 	private PositionService posService;
+	@Autowired
+	private AttendanceService attendService;
 	
 	
 	
@@ -309,6 +314,50 @@ public class HappyController {
 			}
 		}
 		return data;
+	}
+	
+	
+	@RequestMapping("checkAttendance")
+	public String checkAttendance(Integer userId,Model model) {
+		Calendar currentTime = Calendar.getInstance();
+		int aYear = currentTime.get(Calendar.YEAR);   
+        int aMonth = currentTime.get(Calendar.MONTH)+1;
+		List<Attendance> attends = attendService.queryAttByUserIdAndYearAndMonth(userId, aYear, aMonth);
+		model.addAttribute("attends", attends);
+		model.addAttribute("userId", userId);
+		return "manager/displayAttends";
+	}
+	
+	@RequestMapping("searchRecord")
+	public String searchRecord(int aYear,int aMonth,Integer userId,Model model) {
+		int absenceDays = 0;
+		List<Attendance> attends = attendService.queryAttByUserIdAndYearAndMonth(userId, aYear, aMonth);
+		if(attends.size() == 0) {
+            switch (aMonth) {
+    		case 1:case 3:case 5:case 7:case 8:case 10:case 12:
+    			absenceDays = 31;		
+    			break;
+    		case 4:case 6:case 9:case 11:
+    			absenceDays = 30;
+    			break;
+    		case 2:
+    			if((aYear%4==0 && aYear%100!=0)|| aYear%400==0){
+    				absenceDays = 29;
+    			}else {
+    				absenceDays = 28;
+    			}
+    		default:
+    			break;
+    		}
+        }else {
+        	absenceDays = attendService.queryAbsenceDaysByUserIdAndYearAndMonth(userId, aYear, aMonth);
+        }
+		model.addAttribute("attends", attends);
+		model.addAttribute("aYear", aYear);
+        model.addAttribute("aMonth", aMonth);
+		model.addAttribute("absenceDays", absenceDays);
+		model.addAttribute("userId", userId);
+		return "manager/displayAttends";
 	}
 	
 	@RequestMapping("back")

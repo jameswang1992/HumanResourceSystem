@@ -88,6 +88,9 @@ public class JobController {
 		return "manager/admin";
 	}
 	
+	
+	
+	
 	@RequestMapping("deptPosit")
 	public String deptPosit(Model model) {
 		List<Department> depts = deptService.queryAllDepts();

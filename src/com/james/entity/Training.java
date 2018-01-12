@@ -5,7 +5,7 @@ import java.util.Date;
 public class Training {
 
 	private Integer trainId;
-	private Department dept;
+	private Department tDept;
 	private String trainName;
 	private Date trainTime;
 
@@ -14,10 +14,10 @@ public class Training {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Training(Integer trainId, Department dept, String trainName, Date trainTime) {
+	public Training(Integer trainId, Department tDept, String trainName, Date trainTime) {
 		super();
 		this.trainId = trainId;
-		this.dept = dept;
+		this.tDept = tDept;
 		this.trainName = trainName;
 		this.trainTime = trainTime;
 	}
@@ -30,12 +30,12 @@ public class Training {
 		this.trainId = trainId;
 	}
 
-	public Department getDept() {
-		return dept;
+	public Department gettDept() {
+		return tDept;
 	}
 
-	public void setDept(Department dept) {
-		this.dept = dept;
+	public void settDept(Department tDept) {
+		this.tDept = tDept;
 	}
 
 	public String getTrainName() {
@@ -56,7 +56,7 @@ public class Training {
 
 	@Override
 	public String toString() {
-		return "Training [trainId=" + trainId + ", dept=" + dept + ", trainName=" + trainName + ", trainTime="
+		return "Training [trainId=" + trainId + ", tDept=" + tDept + ", trainName=" + trainName + ", trainTime="
 				+ trainTime + "]";
 	}
 

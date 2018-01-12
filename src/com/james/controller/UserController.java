@@ -218,7 +218,7 @@ public class UserController {
 		User user = (User) session.getAttribute("user");
 		user.setPassword(password);
 		int res = userService.modifyUser(user);
-		return "user/tourist";
+		return "user/modifyPW";
 	}
 	
 	@RequestMapping("modify")
