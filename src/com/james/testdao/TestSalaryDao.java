@@ -35,8 +35,8 @@ public class TestSalaryDao {
 	
 	@Test
 	public void testAddSalary() {
-		User user = userDao.queryUserByUserId(3);
-		Salary s = new Salary(-1, user, 1000, 500, -300, 2018, 1);
+		User user = userDao.queryUserByUserId(8);
+		Salary s = new Salary(-1, user, 1000, 500, -300, 200,2018, 1);
 		int res = salaryDao.addSalary(s);
 		System.out.println(res);
 	}
@@ -45,6 +45,18 @@ public class TestSalaryDao {
 	public void testQuerySalary() {
 		List<Salary> salaries = salaryDao.querySalariesByDate(2018, 1);
 		System.out.println(salaries);
+	}
+	
+	@Test
+	public void testQuerySalaryByUserId() {
+		List<Salary> salaries = salaryDao.querySalaryByUserId(8);
+		System.out.println(salaries);
+	}
+	
+	@Test
+	public void testQuerySalaryByUserIdAndDate() {
+		Salary s = salaryDao.querySalaryByUserIdAndDate(8, 2018, 1);
+		System.out.println(s);
 	}
 	
 	

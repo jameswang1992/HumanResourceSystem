@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf8">
-<title>管理员页面</title>
+<title>培训管理</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/index.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.7.2.js"></script>
 <script type="text/javascript">
@@ -41,7 +41,20 @@
 		
 		
 		<div id="right">
+			<div align="center">
+				<h3>培训部门技能</h3>
+				<button id="tt">添加培训内容</button>
 				
+			</div>
+			
+			<div id="training">
+				<h4>培训-详情</h4>
+				<form action="" method="post">
+					培训名称:<input><br/>
+					培训名称:<input><br/>
+					培训名称:<input><br/>
+				</form>
+			</div>
 		</div>					
 	</div>
 </body>

@@ -246,6 +246,16 @@ public class UserController {
 	}
 	
 	
+	
+	@RequestMapping("offer")
+	public String offer(Integer userId,Model model) {
+		Resume resume = resumeService.queryResumeByUserId(userId);
+		model.addAttribute("resume", resume);
+		model.addAttribute("userId", userId);
+		return "deptManager/offer";
+	}
+	
+	
 	@RequestMapping("back")
 	public String back() {
 		return "user/tourist";

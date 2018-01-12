@@ -231,6 +231,11 @@ public class JobController {
 		return data;
 	}
 	
+	/**
+	 * ±‹√‚÷ÿ∏¥√Ê ‘
+	 * @param userId
+	 * @return
+	 */
 	@RequestMapping("checkIV")
 	@ResponseBody
 	public String checkIV(Integer userId) {
@@ -240,6 +245,12 @@ public class JobController {
 			data = "1";
 		}
 		return data;
+	}
+	
+	
+	@RequestMapping("training")
+	public String training() {
+		return "manager/training";
 	}
 	
 	@RequestMapping("back")

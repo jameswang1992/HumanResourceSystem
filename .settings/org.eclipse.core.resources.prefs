@@ -1,5 +1,6 @@
 eclipse.preferences.version=1
 encoding//WebContent/WEB-INF/pages/deptManager/main.jsp=UTF-8
+encoding//WebContent/WEB-INF/pages/deptManager/offer.jsp=UTF-8
 encoding//WebContent/WEB-INF/pages/deptManager/showNotice.jsp=UTF-8
 encoding//WebContent/WEB-INF/pages/employee/emp.jsp=UTF-8
 encoding//WebContent/WEB-INF/pages/employee/personalInfo.jsp=UTF-8

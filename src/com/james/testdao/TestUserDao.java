@@ -3,6 +3,7 @@ package com.james.testdao;
 
 
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -91,9 +92,15 @@ public class TestUserDao {
 		Integer year = currentTime.get(Calendar.YEAR);   
 	    Integer month = currentTime.get(Calendar.MONTH)+1; //第一个月从0开始，所以得到月份＋1  
 	    Integer day = currentTime.get(Calendar.DAY_OF_MONTH); 
-	    System.out.println(day);
-	    currentTime.set(year, month, day, 9, 0, 0);
-	    System.out.println(currentTime.get(Calendar.DAY_OF_MONTH));
+	    System.out.println(month);
+	    currentTime.set(year, month-1, day, 9, 0, 0);
+	    Date rightNow = currentTime.getTime();
+	    System.out.println(rightNow);
+	    Date justNow = new Date();
+	    System.out.println(justNow);
+	    long gap = rightNow.getTime() - justNow.getTime();
+	    int minutesGap = (int) (gap/1000/60);
+	    System.out.println(minutesGap);
 		
 	}
 }

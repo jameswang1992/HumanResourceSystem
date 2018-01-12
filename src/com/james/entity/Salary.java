@@ -13,7 +13,8 @@ public class Salary {
 	private double basicSalary;
 	private double overSalary;// 绩效工资
 	private double socialInsurance;// 社保
-	private double totalSalary;//还没算奖惩
+	private double bonusMalus;//奖惩
+	private double totalSalary;//总工资
 	private int sYear;
 	private int sMonth;
 
@@ -22,14 +23,16 @@ public class Salary {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Salary(Integer salaryId, User sUser, double basicSalary, double overSalary, double socialInsurance, int sYear, int sMonth) {
+	public Salary(Integer salaryId, User sUser, double basicSalary, double overSalary, double socialInsurance,
+			double bonusMalus, int sYear, int sMonth) {
 		super();
 		this.salaryId = salaryId;
 		this.sUser = sUser;
 		this.basicSalary = basicSalary;
 		this.overSalary = overSalary;
 		this.socialInsurance = socialInsurance;
-		this.totalSalary = basicSalary+overSalary+socialInsurance;
+		this.bonusMalus = bonusMalus;
+		this.totalSalary = basicSalary+overSalary+socialInsurance+bonusMalus;
 		this.sYear = sYear;
 		this.sMonth = sMonth;
 	}
@@ -74,6 +77,14 @@ public class Salary {
 		this.socialInsurance = socialInsurance;
 	}
 
+	public double getBonusMalus() {
+		return bonusMalus;
+	}
+
+	public void setBonusMalus(double bonusMalus) {
+		this.bonusMalus = bonusMalus;
+	}
+
 	public double getTotalSalary() {
 		return totalSalary;
 	}
@@ -101,8 +112,10 @@ public class Salary {
 	@Override
 	public String toString() {
 		return "Salary [salaryId=" + salaryId + ", sUser=" + sUser + ", basicSalary=" + basicSalary + ", overSalary="
-				+ overSalary + ", socialInsurance=" + socialInsurance + ", totalSalary=" + totalSalary + ", sYear="
-				+ sYear + ", sMonth=" + sMonth + "]";
+				+ overSalary + ", socialInsurance=" + socialInsurance + ", bonusMalus=" + bonusMalus + ", totalSalary="
+				+ totalSalary + ", sYear=" + sYear + ", sMonth=" + sMonth + "]";
 	}
+
+	
 
 }

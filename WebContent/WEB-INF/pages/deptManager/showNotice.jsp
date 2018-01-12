@@ -26,54 +26,6 @@
 		})
 	})
 	
-	$(function(){
-		$("#agree").click(function(){
-			var userId =$(this).attr("name");
-			$.ajax({
-				url:"${pageContext.request.contextPath}/happy/agree",
-				type:"post",
-				dataType:"text",
-				data:{userId:userId},
-				success:function(data){
-					if(data == 1){
-						alert("录用成功");
-						window.location.reload();
-					}else{
-						alert("录用失败");
-					}
-				},
-				error:function(x,msg,obj){
-					alert(msg);
-				}
-			})
-			return false;
-		})
-	})
-	
-	
-	$(function(){
-		$("#disagree").click(function(){
-			var userId =$(this).attr("name");
-			$.ajax({
-				url:"${pageContext.request.contextPath}/happy/disagree",
-				type:"post",
-				dataType:"text",
-				data:{userId:userId},
-				success:function(data){
-					if(data == 1){
-						alert("拒绝成功");
-						window.location.reload();
-					}else{
-						alert("拒绝失败");
-					}
-				},
-				error:function(x,msg,obj){
-					alert(msg);
-				}
-			})
-			return false;
-		})
-	})
 	
 </script>
 </head>
@@ -102,7 +54,7 @@
 						<td>面试时间</td>
 						<td>面试地点</td>
 						<td>应聘职位</td>
-						<td colspan="2">审批结果</td>
+						<td>操作</td>
 					</tr>
 					<c:forEach	items="${sessionScope.ivs}" var="iv">
 						<c:if test="${'未录用' eq iv.isHire}">
@@ -111,8 +63,7 @@
 								<td><f:formatDate value="${iv.interTime}" pattern="yyyy-MM-dd"/></td>
 								<td>${iv.interAddress }</td>
 								<td>${iv.iApp.aRecmt.rPosition.positionName}</td>
-								<td><a href="#" id="agree" name="${iv.iApp.aUser.userId}">录用</a></td>
-								<td><a href="#" id="disagree" name="${iv.iApp.aUser.userId}">拒绝</a></td>
+								<td><a href="${pageContext.request.contextPath}/user/offer?userId=${iv.iApp.aUser.userId}">面试</a></td>
 							</tr>
 						</c:if>
 					</c:forEach>

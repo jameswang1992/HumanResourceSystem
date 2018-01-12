@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
 import com.james.entity.Attendance;
+import com.james.entity.Bonusmalus;
 import com.james.entity.Resume;
 import com.james.entity.User;
 import com.james.service.AttendanceService;
@@ -99,14 +100,16 @@ public class CryController {
 		int aYear = currentTime.get(Calendar.YEAR);   
         int aMonth = currentTime.get(Calendar.MONTH)+1; //第一个月从0开始，所以得到月份＋1  
         int aDay = currentTime.get(Calendar.DAY_OF_MONTH);
-        currentTime.set(aYear, aMonth, aDay, 9, 0, 0);//设置上班时间9点
+        currentTime.set(aYear, aMonth-1, aDay, 9, 0, 0);//设置上班时间9点
         Date normalTime = currentTime.getTime();
         String isLate= "";
         if(checkinTime.before(normalTime)) {
-        	isLate="迟到";
-        }else {
         	isLate="正常";
+        }else {
+        	isLate="迟到";
         }
+        
+          
         User user = (User) session.getAttribute("user");
         List<Attendance> atts = attendService.queryAttByUserIdAndYearAndMonth(user.getUserId(), aYear, aMonth);
         int absenceDays = 0;
@@ -153,7 +156,7 @@ public class CryController {
 		int aYear = currentTime.get(Calendar.YEAR);   
         int aMonth = currentTime.get(Calendar.MONTH)+1; //第一个月从0开始，所以得到月份＋1  
         int aDay = currentTime.get(Calendar.DAY_OF_MONTH);
-        currentTime.set(aYear, aMonth, aDay, 17, 0, 0);//设置下班时间17点
+        currentTime.set(aYear, aMonth-1, aDay, 17, 0, 0);//设置下班时间17点
         Date normalTime = currentTime.getTime();
         Date checkoutTime = new Date();
         String isLeaveEarly= "";
@@ -163,9 +166,32 @@ public class CryController {
         	isLeaveEarly="正常";
         }
         
+        
+        long gap = normalTime.getTime()-checkoutTime.getTime();
+        int ominGap = (int) (gap/1000/60);
+       
+           
         String data = "0";
         Attendance attend = attendService.queryAttByUserIdAndDate(user.getUserId(), aYear, aMonth, aDay);
         if(attend != null) {
+        	Date checkinTime = attend.getRaceStart();
+        	 currentTime.set(aYear, aMonth-1, aDay, 9, 0, 0);
+        	 Date officeTime = currentTime.getTime();
+        	 long gap1 = checkinTime.getTime()-officeTime.getTime();
+             int iminGap = (int) (gap1/1000/60);
+        	 if(iminGap+ominGap >= 180 && iminGap > 0 && ominGap > 0) {
+             	isLeaveEarly="旷工";
+             	String isLate = "旷工";
+             	attend.setIsLate(isLate);
+             	Bonusmalus bm = new Bonusmalus(-1, user, -300, "旷工", new Date(), "惩罚");
+             	bmService.insertBM(bm);
+             }else if(iminGap > 0){
+            	Bonusmalus bm = new Bonusmalus(-1, user, -100, "迟到", new Date(), "惩罚");
+              	bmService.insertBM(bm);
+             }else if(ominGap > 0) {
+            	Bonusmalus bm = new Bonusmalus(-1, user, -100, "早退", new Date(), "惩罚");
+               	bmService.insertBM(bm);
+             }
         	attend.setGameOver(checkoutTime);
         	attend.setIsLeaveEarly(isLeaveEarly);
         	int res = attendService.updateAttendance(attend);
