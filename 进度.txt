@@ -32,6 +32,8 @@ HumanResourceSystem Day7-night:
 完成员工查看个人考勤，管理员查看员工考勤，修改密码，写培训和薪资
 
 
+HumanResourceSystem Day8和晚上:
+奖惩逻辑写完，培训基本写完，基本上就剩下绩效和发放工资了
 
 
 

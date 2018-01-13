@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.james.dao.TrainingDao">
+	<insert id="addTraining" parameterType="Training">
+		insert into
+			trainings(dept_id,train_name,train_time)
+		values
+			(#{tDept.deptId},#{trainName},#{trainTime})
+	</insert>
+	
+	<delete id="deleteTraining" parameterType="int">
+		delete from
+			trainings
+		where 
+			train_id=#{trainId}
+	</delete>
+	
+	<update id="updateTraining" parameterType="Training">
+		update
+			trainings
+		set 
+			dept_id=#{tDept.deptId},
+			train_name=#{trainName},
+			train_time=#{trainTime}
+		where 
+			train_id=#{trainId}
+	</update>
+	
+	<select id="queryTrainingByDeptId" parameterType="int" resultMap="TrainResultMap">
+		select
+			*
+		from
+			trainings t,department d
+		where
+			t.dept_id=d.dept_id
+		and
+			t.dept_id=#{deptId}
+		
+	</select>
+	
+	
+	<select id="queryAllTrainings" resultMap="TrainResultMap">
+		select
+			*
+		from
+			trainings t,department d
+		where
+			t.dept_id=d.dept_id
+			
+	</select>
+	
+	
+	<resultMap type="Training" id="TrainResultMap">
+		<id property="trainId" column="train_id"/>
+		<result property="trainName" column="train_name"/>
+		<result property="trainTime" column="train_time"/>
+		<association property="tDept" javaType="Department">
+			<id property="deptId" column="dept_id"/>
+			<result property="deptName" column="dept_name"/>
+			<result property="deptCreateTime" column="dept_create_time"/>
+		</association>
+	</resultMap>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

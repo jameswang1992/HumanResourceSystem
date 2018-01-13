@@ -1,11 +1,11 @@
-package com.james.dao;
+package com.james.service;
 
 import java.util.List;
 
 import com.james.entity.Training;
 
-public interface TrainingDao {
-	
+public interface TrainingService {
+
 	int addTraining(Training training);
 	
 	int deleteTraining(Integer trainId);

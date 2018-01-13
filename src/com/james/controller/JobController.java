@@ -2,8 +2,10 @@ package com.james.controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.http.HttpSession;
 
@@ -13,12 +15,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSON;
 import com.james.entity.Application;
 import com.james.entity.Department;
 import com.james.entity.Interview;
 import com.james.entity.Position;
 import com.james.entity.Recruitment;
 import com.james.entity.Resume;
+import com.james.entity.Training;
 import com.james.entity.User;
 import com.james.service.ApplicationService;
 import com.james.service.DepartmentService;
@@ -26,6 +30,7 @@ import com.james.service.InterviewService;
 import com.james.service.PositionService;
 import com.james.service.RecruitmentService;
 import com.james.service.ResumeService;
+import com.james.service.TrainingService;
 import com.james.service.UserService;
 
 @Controller
@@ -46,6 +51,8 @@ public class JobController {
 	private ResumeService resumeService;
 	@Autowired
 	private InterviewService ivService;
+	@Autowired
+	private TrainingService trainService;
 	
 	/**
 	 * 游客查看招聘信息
@@ -249,9 +256,67 @@ public class JobController {
 	
 	
 	@RequestMapping("training")
-	public String training() {
+	public String training(HttpSession session) {
+		List<Department> deptss = deptService.queryAllDepts();
+		List<Training> trains = trainService.queryAllTrainings();
+		session.setAttribute("deptss", deptss);
+		session.setAttribute("trains", trains);
 		return "manager/training";
 	}
+	
+	/**
+	 * 添加培训
+	 * @param trainName
+	 * @param trainTime
+	 * @param deptId
+	 * @return
+	 */
+	@RequestMapping("insertTraining")
+	@ResponseBody
+	public String insertTraining(String trainName,String trainTime,Integer deptId) {
+		Department dept = deptService.queryDeptByDeptId(deptId);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Date trainTime1 = null;
+		try {
+			trainTime1 = sdf.parse(trainTime);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		Training training = new Training(-1, dept, trainName, trainTime1);
+		int res = trainService.addTraining(training);
+		String data = "0";
+		if(res == 1) {
+			data ="1";
+		}
+		return data;
+	}
+	
+	
+	@RequestMapping(value="modifyTraining",produces = "application/json;charset=utf-8")
+	@ResponseBody
+	public String modifyTraining(String trainName,String trainTime,Integer deptId) {
+		SimpleDateFormat sdf1= new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
+		SimpleDateFormat sdf2= new SimpleDateFormat("yyyy/MM/dd");
+		
+		String trainTime1 = null;
+		try {
+			trainTime1 = sdf2.format(sdf1.parse(trainTime));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		System.out.println(trainTime1);
+		
+		List<Object> objs = new ArrayList<Object>();
+		Department dept = deptService.queryDeptByDeptId(deptId);
+		objs.add(0, trainName);
+		objs.add(1, trainTime1);
+		objs.add(2, dept.getDeptName());
+		String data = JSON.toJSONString(objs);
+		return data;
+	}
+	
+	
+	
 	
 	@RequestMapping("back")
 	public String back() {
@@ -261,6 +326,11 @@ public class JobController {
 	@RequestMapping("back1")
 	public String back1() {
 		return "forward:/job/showApp";
+	}
+	
+	@RequestMapping("cancel")
+	public String cancel() {
+		return "forward:/job/training";
 	}
 }
 
