@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=utf8"
     pageEncoding="utf8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf8">
-<title>管理员页面</title>
+<title>发放绩效</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/index.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.7.2.js"></script>
 <script type="text/javascript">
@@ -18,30 +19,43 @@
 		})
 	})
 	
+	
+	
 </script>
 </head>
 <body background="${pageContext.request.contextPath}/pictures/bg.jpg">
 	<div id="large">			
 		
-		<h1 align="center">欢迎管理员${sessionScope.user.userName}来到本公司</h1>							
+		<h1 align="center">欢迎部门主管${user.userName}</h1>							
 		
 		<div id="left">
 			<ul type="square">
-				<li><a href="${pageContext.request.contextPath}/job/showApp"><span>应聘管理</span></a></li><br/>
-				<li><a href="${pageContext.request.contextPath}/job/recruit"><span>招聘管理</span></a></li><br/>
-				<li><a href="${pageContext.request.contextPath}/job/deptPosit"><span>部门职位</span></a></li><br/>
-				<li><a href="${pageContext.request.contextPath}/job/training"><span>培训管理</span></a></li><br/>
-				<li><a href="${pageContext.request.contextPath}/happy/showEmployees"><span>员工管理</span></a></li><br/>
-				<li><a href="${pageContext.request.contextPath}/noob/showBM"><span>奖惩管理</span></a></li><br/>
-				<li><a href=""><span>薪资管理</span></a></li><br/>
-				<li><a href=""><span>工资异议</span></a></li><br/>
+				<li><a href="${pageContext.request.contextPath}/happy/inform"><span>通知管理</span></a></li><br/>
+				<li><a href="${pageContext.request.contextPath}/noob/rewards"><span>绩效管理</span></a></li><br/>
 				<li><a href="${pageContext.request.contextPath}/user/quit" id="quit"><span>退出</span></a></li><br/>
 			</ul>		
 		</div>	
 		
 		
 		<div id="right">
-				
+			<div align="center">
+				<table border="1" bordercolor="antique" cellpadding="10" cellspacing="0">
+					<tr>
+						<td>编号</td>
+						<td>用户名</td>
+						<td>职位</td>
+						<td>操作</td>
+					</tr>
+					<c:forEach items="${requestScope.emps}" var="emp">
+						<tr>
+							<td>${emp.userId}</td>
+							<td>${emp.userName}</td>
+							<td>${emp.uPosition.positionName}</td>
+							<td><a href="#" name="gift">发放当月绩效</a></td>
+						</tr>
+					</c:forEach>
+				</table>
+			</div>
 		</div>					
 	</div>
 </body>

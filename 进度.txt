@@ -35,7 +35,8 @@ HumanResourceSystem Day7-night:
 HumanResourceSystem Day8和晚上:
 奖惩逻辑写完，培训基本写完，基本上就剩下绩效和发放工资了
 
-
+HumanResourceSystem Day9:
+零零散散写了一些功能和页面，就差发放工资
 
 
 

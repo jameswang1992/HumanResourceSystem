@@ -255,8 +255,6 @@ public class CryController {
 	 */
 	@RequestMapping("searchRecord")
 	public String searchRecord(int aYear,int aMonth,HttpSession session,Model model) {
-		System.out.println(aYear);
-		System.out.println(aMonth);
 		User user = (User) session.getAttribute("user");
 		int absenceDays = 0;
 		List<Attendance> attends = attendService.queryAttByUserIdAndYearAndMonth(user.getUserId(), aYear, aMonth);

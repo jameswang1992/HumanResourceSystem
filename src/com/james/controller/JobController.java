@@ -292,6 +292,13 @@ public class JobController {
 	}
 	
 	
+	/**
+	 * 修改培训界面回显
+	 * @param trainName
+	 * @param trainTime
+	 * @param deptId
+	 * @return
+	 */
 	@RequestMapping(value="modifyTraining",produces = "application/json;charset=utf-8")
 	@ResponseBody
 	public String modifyTraining(String trainName,String trainTime,Integer deptId) {
@@ -304,7 +311,6 @@ public class JobController {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		System.out.println(trainTime1);
 		
 		List<Object> objs = new ArrayList<Object>();
 		Department dept = deptService.queryDeptByDeptId(deptId);
@@ -312,6 +318,33 @@ public class JobController {
 		objs.add(1, trainTime1);
 		objs.add(2, dept.getDeptName());
 		String data = JSON.toJSONString(objs);
+		return data;
+	}
+	
+	
+	
+	@RequestMapping("updateTraining")
+	@ResponseBody
+	public String updateTraining(String trainName,String trainTime,Integer deptId,Integer trainId) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd", Locale.ENGLISH);
+		Date trainTime1 = null;
+		try {
+			trainTime1 = sdf.parse(trainTime);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		
+		Department dept = deptService.queryDeptByDeptId(deptId);
+		Training training = trainService.queryTrainingByTrainId(trainId);
+		training.settDept(dept);
+		training.setTrainName(trainName);
+		training.setTrainTime(trainTime1);
+		int res = trainService.updateTraining(training);
+		String data = "0";
+		if(res == 1) {
+			data ="1";
+		}
 		return data;
 	}
 	

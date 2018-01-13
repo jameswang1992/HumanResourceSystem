@@ -13,4 +13,6 @@ public interface BonusmalusDao {
 	List<Bonusmalus> queryBMsByDate(@Param(value = "bYear")int bYear,@Param(value = "bMonth")int bMonth);
 	
 	List<Bonusmalus> queryBMsbyUserId(Integer userId);
+	
+	List<Bonusmalus> queryBMsByUserIdAndDate(@Param(value = "userId")Integer userId,@Param(value = "bYear")int bYear,@Param(value = "bMonth")int bMonth);
 }

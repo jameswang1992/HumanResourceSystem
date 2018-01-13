@@ -89,7 +89,7 @@
 				<li><a href="${pageContext.request.contextPath}/cry/personalInfo"><span>个人信息</span></a></li><br/>
 				<li><a href="${pageContext.request.contextPath}/cry/showAttendance"><span>我的考勤</span></a></li><br/>
 				<li><a href="${pageContext.request.contextPath}/cry/updatePW"><span>修改密码</span></a></li><br/>
-				<li><a href=""><span>我的奖惩</span></a></li><br/>
+				<li><a href="${pageContext.request.contextPath}/noob/myBM"><span>我的奖惩</span></a></li><br/>
 				<li><a href="${pageContext.request.contextPath}/"><span>部门职位</span></a></li><br/>
 				<li><a href=""><span>我的薪资</span></a></li><br/>
 				<li><a href="${pageContext.request.contextPath}/cry/goCheck"><span>点我去签到</span></a></li><br/>

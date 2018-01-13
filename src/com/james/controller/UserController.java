@@ -2,6 +2,7 @@ package com.james.controller;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -20,6 +21,7 @@ import com.james.entity.Department;
 import com.james.entity.Interview;
 import com.james.entity.Position;
 import com.james.entity.Resume;
+import com.james.entity.Training;
 import com.james.entity.User;
 import com.james.service.ApplicationService;
 import com.james.service.AttendanceService;
@@ -27,6 +29,7 @@ import com.james.service.DepartmentService;
 import com.james.service.InterviewService;
 import com.james.service.PositionService;
 import com.james.service.ResumeService;
+import com.james.service.TrainingService;
 import com.james.service.UserService;
 
 @Controller
@@ -47,6 +50,8 @@ public class UserController {
 	private InterviewService ivService;
 	@Autowired
 	private AttendanceService attendService;
+	@Autowired
+	private TrainingService trainService;
 	
 	/**
 	 * ×¢²á
@@ -85,12 +90,22 @@ public class UserController {
 			return "manager/admin";
 		}else if(user.getUserType() == 3) {
 			List<Interview> ivlist = ivService.queryIVsByDeptId(user.getuDepartment().getDeptId());
+			List<Training> trains = trainService.queryTrainingByDeptId(user.getuDepartment().getDeptId());
 			List<Interview> ivs = new ArrayList<Interview>();
+			List<Training> tns = new ArrayList<Training>();
 			for (Interview i : ivlist) {
 				if("Î´Â¼ÓÃ".equals(i.getIsHire())) {
 					ivs.add(i);
 				}
 			}
+			Date rightNow = new Date();
+			for (Training t : trains) {
+				if(rightNow.before(t.getTrainTime())) {
+					tns.add(t);
+				}
+			}
+			
+			session.setAttribute("tns", tns);
 			session.setAttribute("ivs", ivs);
 			return "deptManager/main";
 		}else if(user.getUserType() == 2) {

@@ -65,11 +65,16 @@
 		})
 	})
 	
+	
+	
+	
+	
 	$(function(){
-		$("a").click(function(){
+		$(".training").click(function(){
 			var trainName = $(this).text();
 			var trainTime = $(this).attr("id");
 			var deptId = $(this).attr("name");
+			var trainId = $(this).attr("title");
 			$.ajax({
 				url:"${pageContext.request.contextPath}/job/modifyTraining",
 				type:"post",
@@ -80,9 +85,35 @@
 					$("#training").empty();
 					$("#training").append("<h4>培训-详情</h4>");
 					$("#training").append("<form action='' method='post'>培训名称:<input type='text' name='trainName' value='"+data[0]+"'><br/>培训时间:<input type='text' name='trainTime' value='"+data[1]+"'/><br/>");	
-					$("#training").append("培训部门:<select name='deptId'><c:forEach items='${sessionScope.deptss}' var='dept'><option value='${dept.deptId}'  <c:if test='${"+data[2]+" eq dept.deptName}'></c:if>>${dept.deptName}</option></c:forEach></select><br/>");
+					$("#training").append("培训部门:<select name='deptId'><c:forEach items='${sessionScope.deptss}' var='dept'><option value='${dept.deptId}'>${dept.deptName}</option></c:forEach></select><br/>");
 					$("#training").append("<input type='submit' value='修改' id='submit1'>     ").find("#submit1").click(function(){
-						
+						var trainName = $("input[name='trainName']").val();
+						var trainTime = $("input[name='trainTime']").val();
+						var deptId = $("select[name='deptId']").val();
+						if(trainName == null || trainName == ""){
+							alert("培训名称不能为空");
+							return;
+						}else if(trainTime == null || trainTime == ""){
+							alert("培训时间不能为空");
+							return;
+						}
+						$.ajax({
+							url:"${pageContext.request.contextPath}/job/updateTraining",
+							type:"post",
+							dataType:"text",
+							data:{trainName:trainName,trainTime:trainTime,deptId:deptId,trainId:trainId},
+							success:function(data){
+								if(data == 1){
+									alert("修改培训成功");
+									window.location.reload();
+								}else{
+									alert("修改失败");
+								}
+							},
+							error:function(x,msg,obj){
+								alert(msg);
+							}
+						})
 					});
 					$("#training").append("<input type='button' value='取消' id='cancel1'></form>").find("#cancel1").click(function(){
 						window.location.href="${pageContext.request.contextPath}/job/cancel";
@@ -92,7 +123,7 @@
 				error:function(x,msg,obj){
 					alert(msg);
 				}
-			})		
+			})
 		})
 	})
 	
@@ -110,7 +141,7 @@
 				<li><a href="${pageContext.request.contextPath}/job/deptPosit"><span>部门职位</span></a></li><br/>
 				<li><a href="${pageContext.request.contextPath}/job/training"><span>培训管理</span></a></li><br/>
 				<li><a href="${pageContext.request.contextPath}/happy/showEmployees"><span>员工管理</span></a></li><br/>
-				<li><a href=""><span>奖惩管理</span></a></li><br/>
+				<li><a href="${pageContext.request.contextPath}/noob/showBM"><span>奖惩管理</span></a></li><br/>
 				<li><a href=""><span>薪资管理</span></a></li><br/>
 				<li><a href=""><span>工资异议</span></a></li><br/>
 				<li><a href="${pageContext.request.contextPath}/user/quit" id="quit"><span>退出</span></a></li><br/>
@@ -124,7 +155,7 @@
 				
 				<div id="course">
 					<c:forEach items="${sessionScope.trains}" var="train">
-						<a href="#" id="${train.trainTime}" name="${train.tDept.deptId}">${train.trainName}</a><br/>
+						<a href="#" id="${train.trainTime}" name="${train.tDept.deptId}" title="${train.trainId}" class="training">${train.trainName}</a><br/>
 					</c:forEach>
 				</div>
 				

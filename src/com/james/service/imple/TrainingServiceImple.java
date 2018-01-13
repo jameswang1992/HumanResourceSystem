@@ -28,12 +28,16 @@ public class TrainingServiceImple implements TrainingService {
 	}
 
 
-	public Training queryTrainingByDeptId(Integer deptId) {
+	public List<Training> queryTrainingByDeptId(Integer deptId) {
 		return trainDao.queryTrainingByDeptId(deptId);
 	}
 
 	public List<Training> queryAllTrainings() {
 		return trainDao.queryAllTrainings();
+	}
+
+	public Training queryTrainingByTrainId(Integer trainId) {
+		return trainDao.queryTrainingByTrainId(trainId);
 	}
 
 }

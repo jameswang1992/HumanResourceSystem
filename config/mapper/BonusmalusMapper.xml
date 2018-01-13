@@ -34,6 +34,24 @@
 	</select>
 	
 	
+	<select id="queryBMsByUserIdAndDate" parameterType="int" resultMap="BmResultMap">
+		select
+			*
+		from
+			bonusmalus b,users u
+		where
+			b.user_id=u.user_id
+		and
+			year(bm_time)=#{bYear}
+		and
+			month(bm_time)=#{bMonth}
+		and
+			b.user_id=#{userId}
+	</select>
+	
+	
+	
+	
 	<resultMap type="Bonusmalus" id="BmResultMap">
 		<id property="bmId" column="bm_id"/>
 		<result property="bmSalary" column="bm_salary"/>

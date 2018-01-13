@@ -23,6 +23,15 @@
 	$(function(){
 		$("#iv").click(function(){
 			$("#notice").show();
+			$("#message").hide();
+		})
+	})
+	
+	
+	$(function(){
+		$("#train").click(function(){
+			$("#message").show();
+			$("#notice").hide();
 		})
 	})
 	
@@ -37,7 +46,7 @@
 		<div id="left">
 			<ul type="square">
 				<li><a href="${pageContext.request.contextPath}/happy/inform"><span>通知管理</span></a></li><br/>
-				<li><a href="${pageContext.request.contextPath}/"><span>绩效管理</span></a></li><br/>
+				<li><a href="${pageContext.request.contextPath}/noob/rewards"><span>绩效管理</span></a></li><br/>
 				<li><a href="${pageContext.request.contextPath}/user/quit" id="quit"><span>退出</span></a></li><br/>
 			</ul>		
 		</div>	
@@ -69,6 +78,28 @@
 					</c:forEach>
 				</table>
 			</div>
+			
+			
+			
+			<div id="message" style="display: none" align="center">
+				<table border="1" cellpadding="10" cellspacing="0">
+					<tr>
+						<td>编号</td>
+						<td>培训内容</td>
+						<td>培训时间</td>
+					</tr>
+					<c:forEach	items="${sessionScope.tns}" var="t">
+			
+						<tr>
+							<td>${t.trainId}</td>
+							<td>${t.trainName}</td>
+							<td><f:formatDate value="${t.trainTime}" pattern="yyyy-MM-dd"/></td>
+						</tr>
+						
+					</c:forEach>
+				</table>
+			</div>
+			
 			
 		</div>					
 	</div>

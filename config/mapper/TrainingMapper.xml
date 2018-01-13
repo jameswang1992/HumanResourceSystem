@@ -40,6 +40,18 @@
 	</select>
 	
 	
+	<select id="queryTrainingByTrainId" parameterType="int" resultMap="TrainResultMap">
+		select
+			*
+		from
+			trainings t,department d
+		where
+			t.dept_id=d.dept_id
+		and
+			t.train_id=#{trainId}
+	</select>
+	
+	
 	<select id="queryAllTrainings" resultMap="TrainResultMap">
 		select
 			*

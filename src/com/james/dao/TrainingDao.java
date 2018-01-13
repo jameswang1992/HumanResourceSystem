@@ -12,7 +12,9 @@ public interface TrainingDao {
 	
 	int updateTraining(Training training);
 	
-	Training queryTrainingByDeptId(Integer deptId);
+	List<Training> queryTrainingByDeptId(Integer deptId);
+	
+	Training queryTrainingByTrainId(Integer trainId);
 	
 	List<Training> queryAllTrainings();
 }

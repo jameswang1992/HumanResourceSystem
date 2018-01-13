@@ -20,6 +20,13 @@
 		})
 	})
 	
+	
+	$(function(){
+		$("#backup").click(function(){
+			window.location.href="${pageContext.request.contextPath}/cry/backup";
+		})
+	})
+	
 	$(function(){
 		$("#submit").click(function(){
 			var age = $("input[name='age']").val();
@@ -108,7 +115,7 @@
 					</tr>
 					<tr>
 						<td colspan="2"><input type="submit" value="保存" id="submit"></td>
-						<td colspan="2"><button onclick="window.location='${pageContext.request.contextPath}/cry/backup'" >返回</button></td>
+						<td colspan="2"><input type="button" id="backup" value="返回"></td>
 					</tr>
 				</table>
 			</form>

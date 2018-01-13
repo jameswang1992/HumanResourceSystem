@@ -16,6 +16,13 @@
 	})
 	
 	$(function(){
+		var flag = ${!empty sessionScope.tns};
+		if(flag){
+			alert("您有培训通知，请去查看");
+		}
+	})
+	
+	$(function(){
 		$("#quit").click(function(){
 			if(confirm("您确定要退出吗?")){
 				return true;
@@ -34,7 +41,7 @@
 		<div id="left">
 			<ul type="square">
 				<li><a href="${pageContext.request.contextPath}/happy/inform"><span>通知管理</span></a></li><br/>
-				<li><a href="${pageContext.request.contextPath}/"><span>绩效管理</span></a></li><br/>
+				<li><a href="${pageContext.request.contextPath}/noob/rewards"><span>绩效管理</span></a></li><br/>
 				<li><a href="${pageContext.request.contextPath}/user/quit" id="quit"><span>退出</span></a></li><br/>
 			</ul>		
 		</div>	

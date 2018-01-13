@@ -12,7 +12,9 @@ public interface TrainingService {
 	
 	int updateTraining(Training training);
 	
-	Training queryTrainingByDeptId(Integer deptId);
+	List<Training> queryTrainingByDeptId(Integer deptId);
 	
 	List<Training> queryAllTrainings();
+	
+	Training queryTrainingByTrainId(Integer trainId);
 }

@@ -33,7 +33,7 @@
 				<li><a href="${pageContext.request.contextPath}/job/deptPosit"><span>部门职位</span></a></li><br/>
 				<li><a href="${pageContext.request.contextPath}/job/training"><span>培训管理</span></a></li><br/>
 				<li><a href="${pageContext.request.contextPath}/happy/showEmployees"><span>员工管理</span></a></li><br/>
-				<li><a href=""><span>奖惩管理</span></a></li><br/>
+				<li><a href="${pageContext.request.contextPath}/noob/showBM"><span>奖惩管理</span></a></li><br/>
 				<li><a href=""><span>薪资管理</span></a></li><br/>
 				<li><a href=""><span>工资异议</span></a></li><br/>
 				<li><a href="${pageContext.request.contextPath}/user/quit" id="quit"><span>退出</span></a></li><br/>
@@ -42,6 +42,10 @@
 		
 		
 		<div id="right">
+			<select id="empType">
+				<option>在职人员</option>
+				<option>离职人员</option>
+			</select>
 			<table border="1" bordercolor="violet" cellpadding="10" cellspacing="0" align="center">
 				<tr>
 					<td>员工Id</td>
